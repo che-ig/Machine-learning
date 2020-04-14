@@ -40,3 +40,10 @@ print(average(toes))
 '''
 print(pred)
 
+# print(neural_network(np.array([toes[0], wlrec[0], nfans[0]]), np.array([0.1, 0.2, -0.1])))
+w1 = [toes[0], wlrec[0], nfans[0]]
+w2 = [0.1, 0.2, -0.1]
+def summ(e1, e2):
+    return e1 * e2
+res = sum(list(map(summ, w1, w2)))
+print(res)
