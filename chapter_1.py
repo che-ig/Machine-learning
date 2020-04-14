@@ -60,3 +60,18 @@ def summ(e1, e2):
 res = sum(list(map(summ, w1, w2)))
 print(res)
 '''
+
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([6, 7, 8])
+c = np.array([
+    [1, 2, 3],
+    [ 4, 5, 6]
+    ])
+d = np.zeros((2, 4)) # Матрица 2*4 заполненная нулями
+e = np.random.rand(2, 5) # Матрица 2*5 заполненная случайными числами от 0 до 1
+
+print(a)
+print(b)
+print(c)
+print(d)
+print(e)
