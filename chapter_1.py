@@ -61,17 +61,24 @@ res = sum(list(map(summ, w1, w2)))
 print(res)
 '''
 
-a = np.array([1, 2, 3, 4, 5])
-b = np.array([6, 7, 8])
+a = np.array([1, 2, 3, 4])
+b = np.array([5, 6, 7, 8])
 c = np.array([
-    [1, 2, 3],
-    [ 4, 5, 6]
+    [1, 2, 3, 4],
+    [5, 6, 7, 8]
     ])
 d = np.zeros((2, 4)) # Матрица 2*4 заполненная нулями
 e = np.random.rand(2, 5) # Матрица 2*5 заполненная случайными числами от 0 до 1
+
+f = np.zeros((1, 4))
+g = np.zeros((4, 3))
+cc = f.dot(g)
 
 print(a)
 print(b)
 print(c)
 print(d)
 print(e)
+
+print(a * c)
+print('cc= ', cc)
