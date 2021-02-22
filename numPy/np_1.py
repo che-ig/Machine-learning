@@ -1,4 +1,6 @@
 import numpy as np
+import scipy
+
 simple_array = np.array([1, 8, 2, 4])
 array_example = np.array([[5,5], [6,6], [7,7]])
 # создание массива содержащий нули
