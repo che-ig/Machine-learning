@@ -11,6 +11,8 @@ flg, axs = plt.subplots(2, 2, figsize=(12, 7))
 axs[0, 0].plot(x, y, 'r--')
 axs[0, 1].plot(x, y2, 'b:')
 axs[1, 0].plot(x, y3, 'g-.')
+
+plt.title('my title')
 axs[1, 1].plot(x, y4, 'rx')
 
 plt.show()
