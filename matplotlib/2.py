@@ -14,5 +14,5 @@ axs[1, 0].plot(x, y3, 'g-.')
 
 plt.title('my title')
 axs[1, 1].plot(x, y4, 'rx')
-
+plt.figtext(1, -0.1, 'figtext')
 plt.show()

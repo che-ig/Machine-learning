@@ -32,6 +32,3 @@ plt.ylabel('fruit', color='blue')
 plt.legend()
 
 plt.show()
-
-fig, ax = plt.subplots(figsize=(8, 6))
-print(fig, '\n', ax)
