@@ -30,7 +30,7 @@ plt.plot(x, y2, 'b-.')
 
 fig_ax_3 = fg.add_subplot(gs[1, :])
 bbox_3 = dict(boxstyle='circle', facecolor='y', ec='m', hatch='/')
-plt.title('long graph', bbox=bbox_3)
+plt.title('long graph')
 plt.plot(x, y3, 'r:', label='long Graph')
 plt.xlabel('x', color='b')
 plt.ylabel('y', color='b')
