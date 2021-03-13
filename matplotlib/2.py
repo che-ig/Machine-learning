@@ -12,6 +12,6 @@ axs[0, 0].plot(x, y, 'r--')
 axs[0, 1].plot(x, y2, 'b:')
 axs[1, 0].plot(x, y3, 'g-.')
 
-plt.title('my title')
+plt.title(label='my title')
 axs[1, 1].plot(x, y4, 'rx')
 plt.show()
