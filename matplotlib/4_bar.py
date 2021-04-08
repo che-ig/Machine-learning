@@ -16,5 +16,5 @@ ax.set_title('Пример групповой диаграммы')
 ax.set_xticks(x)
 ax.set_xticklabels(cat_par)
 ax.legend()
-print(error)
+
 plt.show()
