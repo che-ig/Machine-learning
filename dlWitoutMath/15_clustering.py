@@ -29,9 +29,9 @@ for i in xy:
     scatter_x.extend(i[:, 0])
     scatter_y.extend(i[:, 1])
 # special_predict
-xy_points.extend([[0, 0]])
-scatter_x.append(0)
-scatter_y.append(0)
+# xy_points.extend([[0, 0]])
+# scatter_x.append(0)
+# scatter_y.append(0)
 plt.figure(figsize=(10, 10))
 for num_clusters in range(2, 11):
     kMeans = KMeans(n_clusters=num_clusters)
