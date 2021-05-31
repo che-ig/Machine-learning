@@ -75,3 +75,25 @@ example_3 = "aabaaab"
 print(pi_fun(example_1))
 print(pi_fun(example_2))
 print(pi_fun(example_3))
+
+array = [-88, 5, 7, -1, 3, 0, 11, 2, 5]
+def quickSort(array):
+    n = len(array)
+    l = []
+    m = []
+    r = []
+    if n >= 1:
+        for item in array:
+            if item > array[0]:
+                r.append(item)
+            elif item < array[0]:
+                l.append(item)
+            else:
+                m.append(item)
+        l = quickSort(l)
+        r = quickSort(r)
+    else:
+        return []
+    return l + m + r
+
+print(quickSort(array))
