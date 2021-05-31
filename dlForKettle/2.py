@@ -18,7 +18,7 @@ def poliline(t, n, length, angle):
 
 
 
-bob = turtle.Turtle()
+# bob = turtle.Turtle()
 # bob.fd(100)
 # bob.lt(90)
 # bob.fd(100)
@@ -30,10 +30,32 @@ bob = turtle.Turtle()
 #     bob.lt(170)
 
 
-poliline(bob, 30, 10, 2)
-circle(bob, 150)
-poligon(bob, 8, 100)
+# poliline(bob, 30, 10, 2)
+# circle(bob, 150)
+# poligon(bob, 8, 100)
 
-turtle.mainloop()
+# turtle.mainloop()
 # bob.lt(80)
 # bob.fd(100)
+
+array = [-88, 5, 7, -1, 3, 0, 11, 2, 5]
+def quickSort(array):
+    n = len(array)
+    l = []
+    m = []
+    r = []
+    if n >= 1:
+        for item in array:
+            if item > array[0]:
+                r.append(item)
+            elif item < array[0]:
+                l.append(item)
+            else:
+                m.append(item)
+        l = quickSort(l)
+        r = quickSort(r)
+    else:
+        return []
+    return l + m + r
+
+print(quickSort(array))
