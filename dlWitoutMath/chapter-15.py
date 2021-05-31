@@ -11,6 +11,7 @@ num_pts = 100
 nouse_range = 0.2
 x_vals = []
 y_vals = []
+zzz = []
 (x_left, x_right) = (-2, 2)
 for i in range(num_pts):
     x = np.random.uniform(x_left, x_right)
@@ -18,6 +19,7 @@ for i in range(num_pts):
 
     x_vals.append(x)
     y_vals.append(y)
+    zzz.append([x, y])
 
 x_column = np.reshape(x_vals, (len(x_vals), 1))
 
