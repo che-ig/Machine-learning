@@ -35,21 +35,31 @@ print(revertWord)
 
 def parChecker(s: str):
     stack = Stack()
-    left_bracket = '('
-    right_bracket = ')'
+    left_brackets = '({['
+    right_brackets = ')}]'
 
-    if not isinstance(s, str) or (s and s[0] == right_bracket):
+    def matches(open, close):       
+        return left_brackets.index(open) == right_brackets.index(close)
+
+    if not isinstance(s, str) or (s and s[0] in right_brackets):
         return False
 
     for i in s:
-        if i == left_bracket:
+        if i in left_brackets:
             stack.push(i)
         else:
             if stack.isEmpty():
                 return False
-            stack.pop()
+            else:
+                top = stack.pop()
+                if not matches(top, i):
+                    return False
 
     return stack.isEmpty()
-    
+
+
+
+
 strBracket = '((()()))()'
+print(parChecker('{{([][])}()}'))
 print(parChecker(strBracket))
