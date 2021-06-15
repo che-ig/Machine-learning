@@ -97,3 +97,23 @@ def quickSort(array):
     return l + m + r
 
 print(quickSort(array))
+
+def anagram(s: str):
+    
+    if not isinstance(s, str):
+        return False
+
+    n = len(s)
+    if n == 1 or n == 0:
+        return True
+    l = s[0]
+    r = s[-1]
+    if l == r:
+        return anagram(s[1:-1])
+    else:
+        return False
+
+ex_1 = 'abccbad'
+exa_2 = 10
+print(anagram(ex_1))
+print(anagram(exa_2))
