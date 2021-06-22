@@ -38,6 +38,7 @@ class Heap:
             # else:
             #     break
 
+            # Пока не дошли до конца кучи (n - 1) и левый ребенок меньше родителя, то продолжаем спуск
             if index_left_child <= (n - 1) and self._heap[i] > self._heap[index_left_child]:
                 self._heap[i], self._heap[index_left_child] = self._heap[index_left_child], self._heap[i]
                 j = index_left_child
