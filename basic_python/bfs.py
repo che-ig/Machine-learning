@@ -23,11 +23,12 @@ def bfs(start_vertex, end_vertex, graph):
         for neighbor in graph[v]:
             if not distance.get(neighbor):
                 distance[neighbor] = distance[v] + 1
-                # if neighbor == end_vertex:
-                #     return distance[end_vertex]
+                if neighbor == end_vertex:
+                    return distance[end_vertex]
                 queue.append(neighbor)
     return distance
 
 print(bfs(5, 7, graph))
 print(bfs(1, 7, graph))
 print(bfs(2, 9, graph))
+print(bfs(9, 1, graph))
