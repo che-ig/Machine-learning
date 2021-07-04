@@ -20,17 +20,18 @@ class Stack:
     def size(self):
         return len(self.items)
 
-m = Stack()
 
-s = 'abc'
-revertWord = ''
-for i in s:
-    m.push(i)
 
-while not m.isEmpty():
-    revertWord += m.pop()
+def revertWord(s: str):
+    revertWord = ''
+    m = Stack()
+    for i in s:
+        m.push(i)
 
-print(revertWord)
+    while not m.isEmpty():
+        revertWord += m.pop()
+
+    return revertWord
 
 
 def parChecker(s: str):
@@ -71,9 +72,9 @@ def divideBy2(decNumber):
 
     return binString
 
-print(divideBy2(5))
-
-
-strBracket = '((()()))()'
-print(parChecker('{{([][])}()}'))
-print(parChecker(strBracket))
+if __name__ == '__main__':
+    print(divideBy2(5))
+    print(revertWord('abc'))
+    strBracket = '((()()))()'
+    print(parChecker('{{([][])}()}'))
+    print(parChecker(strBracket))
