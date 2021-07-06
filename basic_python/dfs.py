@@ -50,8 +50,7 @@ def dfs(start_vertex, graph):
     _stack.push(start_vertex)
     while not _stack.isEmpty():
         vertex = _stack.pop()
-        print(vertex)
-        
+
         for item in graph[vertex]:
             if not distance.get(item) and item != start_vertex:
                 distance[item] = distance[vertex] +1
