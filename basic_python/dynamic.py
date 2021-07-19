@@ -13,6 +13,9 @@ def numberWaysGoToPoint(path: int):
     return d
 
 def maxSubSequence(obj_1, obj_2):
+    ''' 
+        Поиск максимальной общей подпоследовательности
+    '''
     res = [[0 for _ in range(len(obj_2))] for _ in range(len(obj_1))]
     for i, value_1 in enumerate(obj_1):
         for j, value_2 in enumerate(obj_2):
@@ -23,6 +26,9 @@ def maxSubSequence(obj_1, obj_2):
     return res[-1][-1]
 
 def maxCommonSubString(obj_1, obj_2):
+    ''' 
+        Поиск самой длинной общей подстроки 
+    '''
     res = [[0 for _ in range(len(obj_2))] for _ in range(len(obj_1))]
 
     for i, value_1 in enumerate(obj_1):
