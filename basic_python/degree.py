@@ -12,7 +12,4 @@ def degree(value, deg):
 
 if __name__ == '__main__':
     r = degree(2, 5)
-    # with open('./temp.txt', 'w') as f:
-    #     f.write(str(r))
     print(r)
-    print('end')
