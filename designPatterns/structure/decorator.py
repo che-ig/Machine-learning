@@ -1,0 +1,70 @@
+from abc import ABC, abstractmethod
+
+class IBeverage(ABC):
+    ''' 
+        Интерфейс базового класса
+    '''
+    @abstractmethod
+    def cost(self) -> float:
+        pass
+
+
+class ICondiment(IBeverage):
+    '''
+        Интерфейс базового декоратора
+    '''
+    @abstractmethod
+    def description() -> str:
+        pass
+
+class Espresso(IBeverage):
+    def __init__(self, cost):
+        self._cost = cost
+    
+    def cost(self):
+        return self._cost
+    
+    def description(self) -> str:
+        return 'Espresso'
+
+class DarkRoast(IBeverage):
+    def __init__(self, cost):
+        self._cost = cost
+    
+    def cost(self):
+        return self._cost
+    
+    def description(self) -> str:
+        return 'Black Coffee'
+
+class Milk(ICondiment):
+    def __init__(self, beverage: IBeverage, cost:float):
+        self._beverage = beverage
+        self._cost = cost
+
+    def cost(self):
+        return self._cost + self._beverage.cost()
+
+    def description(self):
+        return f'{self._beverage.description()} with Milk'
+
+class Whip(ICondiment):
+    def __init__(self, beverage: IBeverage, cost:float):
+        self._beverage = beverage
+        self._cost = cost
+
+    def cost(self):
+        return self._cost + self._beverage.cost()
+
+    def description(self):
+        return f'{self._beverage.description()} with Whip'
+
+
+if __name__ == '__main__':
+    espresso = Espresso(10)
+    espresso = Milk(espresso, 5)
+    espresso = Whip(espresso, 3)
+    
+    cost_esspresso = espresso.cost()
+    description_esspresso = espresso.description()
+    print(cost_esspresso, description_esspresso)
