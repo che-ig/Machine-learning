@@ -18,6 +18,9 @@ class ICondiment(IBeverage):
         pass
 
 class Espresso(IBeverage):
+    ''' 
+        Конкретный класс. Кофе эспрессщ
+    '''
     def __init__(self, cost):
         self._cost = cost
     
@@ -28,7 +31,10 @@ class Espresso(IBeverage):
         return 'Espresso'
 
 class DarkRoast(IBeverage):
-    def __init__(self, cost):
+    ''' 
+        Конкретный класс. Черный кофе.
+    '''
+    def __init__(self, cost:float):
         self._cost = cost
     
     def cost(self):
@@ -38,6 +44,9 @@ class DarkRoast(IBeverage):
         return 'Black Coffee'
 
 class Milk(ICondiment):
+    ''' 
+        Декоратор добавляет молоко в напиток
+    '''
     def __init__(self, beverage: IBeverage, cost:float):
         self._beverage = beverage
         self._cost = cost
@@ -49,6 +58,9 @@ class Milk(ICondiment):
         return f'{self._beverage.description()} with Milk'
 
 class Whip(ICondiment):
+    ''' 
+        Декоратор добавляет взбитую пенку
+    '''
     def __init__(self, beverage: IBeverage, cost:float):
         self._beverage = beverage
         self._cost = cost
