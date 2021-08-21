@@ -46,7 +46,7 @@ class WindowDailog(Dialog):
         Конкретный фабричный метод. 
         Создает конкретную кнопку под windows
     '''
-    def createButton(self):
+    def createButton(self) -> IButton:
         return WindowButton()
 
 class linuxDailog(Dialog):
@@ -54,7 +54,7 @@ class linuxDailog(Dialog):
         Конкретный фабричный метод. 
         Создает конкретную кнопку под linux
     '''
-    def createButton(self):
+    def createButton(self) -> IButton:
         return LinuxButton()
 
 def client_code(creator):
