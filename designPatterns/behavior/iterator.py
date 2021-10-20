@@ -1,5 +1,5 @@
-from typing import List
 from collections.abc import Iterable, Iterator
+from typing import List
 
 
 class PizzaItem:
@@ -35,11 +35,11 @@ class PizzaAggregate(Iterable):
     def amount_slices(self) -> int:
         return len(self._slices)
 
-    def __iter__(self) -> PizzaSliceIterator:
-        return PizzaSliceIterator(self._slices)
-
     def get_reverse_iterator(self) -> PizzaSliceIterator:
         return PizzaSliceIterator(self._slices, True)
+
+    def __iter__(self) -> PizzaSliceIterator:
+        return PizzaSliceIterator(self._slices)
 
 
 if __name__ == "__main__":

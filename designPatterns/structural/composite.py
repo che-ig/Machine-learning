@@ -1,35 +1,36 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import List
+
 
 class IComponent(ABC):
-    """ 
+    """
         Базовый класс Компонент объявляет общие операции как для простых, так и для
         сложных объектов структуры.
     """
     @property
     def parent(self) -> IComponent:
         return self._parent
-    
+
     @parent.setter
     def parent(self, parent: IComponent):
         self._parent = parent
 
-    """ 
-        Методы присущие контейнерам элементов
-    """
+    # Методы присущие контейнерам элементов
+
     def add(self):
         pass
 
     def remove(self):
         pass
 
-    def isComposite(self) -> bool:
+    def is_composite(self) -> bool:
         return False
 
     @abstractmethod
     def operation(self):
         pass
+
 
 class Leaf(IComponent):
     def __init__(self, cost: float):
@@ -38,10 +39,11 @@ class Leaf(IComponent):
     def operation(self):
         return self._cost
 
+
 class Composete(IComponent):
     def __init__(self):
         self._children: list[IComponent] = []
-    
+
     def add(self, component: IComponent) -> None:
         self._children.append(component)
         component.parent = self
@@ -56,9 +58,10 @@ class Composete(IComponent):
             cost += item.operation()
         return cost
 
-    def isComposite(self) -> bool:
+    def is_composite(self) -> bool:
         return True
-            
+
+
 if __name__ == "__main__":
     leaf_1 = Leaf(10)
     leaf_2 = Leaf(20)
@@ -69,7 +72,7 @@ if __name__ == "__main__":
     composite = Composete()
     composite.add(leaf_1)
     composite.add(leaf_2)
-    
+
     composite_2 = Composete()
     composite_2.add(leaf_3)
     composite_2.add(leaf_4)
@@ -79,5 +82,5 @@ if __name__ == "__main__":
     composite_3.add(composite)
     composite_3.add(composite_2)
 
-    totalCost = composite_3.operation()
-    print(totalCost)
+    total_cost = composite_3.operation()
+    print(total_cost)

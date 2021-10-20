@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 
 class ICommand(ABC):
     """
@@ -9,8 +11,9 @@ class ICommand(ABC):
     def execute(self):
         pass
 
+
 class TV:
-    """ 
+    """
         Класс получатель (телевизор).
         Класс чьи методы будут испльзоваться в команде
     """
@@ -20,19 +23,21 @@ class TV:
     def off(self):
         print('Выключение телевизора')
 
+
 class VacuumCleaner:
-    """ 
+    """
         Класс получатель (пылесос).
         Класс чьи методы будут испльзоваться в команде
     """
     def wash(self):
         print('Моем пол')
-    
+
     def clean(self):
         print('Чистим пол')
 
-class tvOnCommand(ICommand):
-    """ 
+
+class TvOnCommand(ICommand):
+    """
         Конкретная команда, отвечающая ТОЛЬКО за включение телевизора
     """
     def __init__(self, receiver):
@@ -41,8 +46,9 @@ class tvOnCommand(ICommand):
     def execute(self):
         self._receiver.on()
 
-class washAndCleanCommand(ICommand):
-    """ 
+
+class WashAndCleanCommand(ICommand):
+    """
         Конкретная команда, отвечающая ТОЛЬКО за мытье и чистку пола при
         помощи пылесоса
     """
@@ -53,24 +59,25 @@ class washAndCleanCommand(ICommand):
         self._receiver.wash()
         self._receiver.clean()
 
+
 class Invoker():
-    """ 
+    """
         Класс инициатор. Формирует команды
     """
     tv = TV()
     vacuum = VacuumCleaner()
 
-    tvOn = tvOnCommand(tv)
-    vacuumCleaner = washAndCleanCommand(vacuum)
+    tv_on = TvOnCommand(tv)
+    vacuum_cleaner = WashAndCleanCommand(vacuum)
 
-    def turnOnTV(self):
-        self.tvOn.execute()
-    
-    def workingVacuumCleaner(self):
-        self.vacuumCleaner.execute()
+    def turn_on_tv(self):
+        self.tv_on.execute()
+
+    def working_vacuum_cleaner(self):
+        self.vacuum_cleaner.execute()
 
 
 if __name__ == '__main__':
     invoker = Invoker()
-    invoker.turnOnTV()
-    invoker.workingVacuumCleaner()
+    invoker.turn_on_tv()
+    invoker.working_vacuum_cleaner()

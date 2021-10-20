@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class CaffeineBeverage(ABC):
     """
     Абстрактный Класс определяет шаблонный метод, содержащий скелет некоторого
@@ -8,19 +9,19 @@ class CaffeineBeverage(ABC):
     Конкретные подклассы должны реализовать эти операции, но оставить сам
     шаблонный метод без изменений.
     """
-    def prepareRecipe(self):
+    def prepare_recipe(self):
         """
             Шаблонный метод определяет последовательность
             выполняемых операций.
          """
-        self.boilWater()
+        self.boil_water()
         self.brew()
-        self.addCondimets()
-        self.pourInCup()
+        self.add_condimets()
+        self.pour_in_cup()
 
     # Метод обязан быть реализован субклассом
     @abstractmethod
-    def addCondimets(self):
+    def add_condimets(self):
         pass
 
     # Метод обязан быть реализован субклассом
@@ -28,15 +29,16 @@ class CaffeineBeverage(ABC):
     def brew(self):
         pass
 
-    """ Эти методы являются методами по умолчанию 
-        и не нуждаются в переопределении. Но если субклассам
-        требется переопределение, то они могут это сделать.
-    """
-    def boilWater(self):
+    # Эти методы являются методами по умолчанию
+    # и не нуждаются в переопределении. Но если субклассам
+    # требется переопределение, то они могут это сделать.
+
+    def boil_water(self):
         print('Кипятим воду')
 
-    def pourInCup(self):
+    def pour_in_cup(self):
         print('Разливаем напиток')
+
 
 class Tea(CaffeineBeverage):
     """
@@ -46,15 +48,18 @@ class Tea(CaffeineBeverage):
     def brew(self):
         print("Заваривам чай")
 
-    def addCondimets(self):
+    def add_condimets(self):
         print("Добавим сахар")
+
+
 class Coffee(CaffeineBeverage):
     def brew(self):
         print("Варим кофе")
 
-    def addCondimets(self):
+    def add_condimets(self):
         print("Добавим молоко")
+
 
 if __name__ == "__main__":
     tea = Tea()
-    res = tea.prepareRecipe()
+    res = tea.prepare_recipe()

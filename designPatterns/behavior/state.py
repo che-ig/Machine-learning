@@ -1,112 +1,119 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 
 
 class State(ABC):
-    """ 
+    """
         Интерфейс состояний. Все состояния должны реализовать абстрактные методы
     """
     @abstractmethod
-    def insertQuarter(self):
+    def insert_quarter(self):
         pass
 
     @abstractmethod
-    def ejectQuarter(self):
+    def eject_quarter(self):
         pass
 
     @abstractmethod
-    def turnCrank(self):
+    def turn_crank(self):
         pass
 
     @abstractmethod
     def give(self):
         pass
+
+
 class HasQuarter(State):
-    """ 
+    """
         Состояние когда клиент ввел моентку в автомат
     """
     def __init__(self, machine: GumMachine):
         self._machine = machine
 
-    def insertQuarter(self):
+    def insert_quarter(self):
         print('Вы уже ввели моненту. Вторую ввести нельзя')
 
-    def ejectQuarter(self):
+    def eject_quarter(self):
         print('Заберите свою монетку.')
-        self._machine.setState(self._machine.getNoQuarterState())
-    
-    def turnCrank(self):
+        self._machine.set_count(self._machine.get_no_quarter_state())
+
+    def turn_crank(self):
         print('Подождите')
-        self._machine.setState(self._machine.getSoldState())
+        self._machine.set_count(self._machine.get_sold_state())
 
     def give(self):
         print('Жевачка не выдана (она выдается в состояни sold)')
 
+
 class NoQuarter(State):
-    """ 
+    """
         Состояние отсутствия монетки в автомате
     """
     def __init__(self, machine: GumMachine):
         self._machine = machine
 
-    def insertQuarter(self):
+    def insert_quarter(self):
         print('Вы ввели монетку')
-        self._machine.setState(self._machine.getHasQuarterState())
+        self._machine.set_count(self._machine.get_has_quarter_state())
 
-    def ejectQuarter(self):
+    def eject_quarter(self):
         print('Сначала вставьте монетку')
 
-    def turnCrank(self):
+    def turn_crank(self):
         print('Сначала вставьте монетку, а потом дергайте за рычаг')
 
     def give(self):
         print('Жевачка выдается только за монетку')
 
+
 class Sold(State):
-    """ 
+    """
         Состояние когда жевачка уже продана и вскоре будет выдана покупателю
     """
     def __init__(self, machine: GumMachine):
         self._machine = machine
 
-    def insertQuarter(self):
+    def insert_quarter(self):
         print('Подождите выдачи жевачки')
 
-    def ejectQuarter(self):
+    def eject_quarter(self):
         print('На этом этапе возврат невозможен')
 
-    def turnCrank(self):
+    def turn_crank(self):
         print('Вы уже дернули за рычаг')
 
     def give(self):
-        self._machine.releaseGum()
-        if self._machine.getCount() > 0:
-            self._machine.setState(self._machine.getNoQuarterState())
+        self._machine.release_gum()
+        if self._machine.get_count() > 0:
+            self._machine.set_count(self._machine.get_no_quarter_state())
         else:
-            self._machine.setState(self._machine.getSoldOutState())
+            self._machine.set_count(self._machine.get_sold_out_state())
+
 
 class SoldOUt(State):
-    """ 
+    """
         Состояние пустого автомата.
     """
     def __init__(self, machine: GumMachine):
         self._machine = machine
 
-    def insertQuarter(self):
+    def insert_quarter(self):
         print('Все жевачки проданы')
 
-    def ejectQuarter(self):
+    def eject_quarter(self):
         print('Вы не вставили монетку')
 
-    def turnCrank(self):
+    def turn_crank(self):
         print('В автомате нет жевачки')
 
     def give(self):
         print('Жевачка не выдана т.к автомат пуст')
 
+
 class GumMachine:
-    """ 
-        Класс аппарата с жевачкой. Это класс контекста, который 
+    """
+        Класс аппарата с жевачкой. Это класс контекста, который
         делегирует вызовы клиента объектам состояний.
     """
     def __init__(self, count: int):
@@ -119,73 +126,73 @@ class GumMachine:
         if not count:
             self._state = self._soldOutState
 
-    """
-        Геттеры для получения объектов конкретных состояний.
-        Чтобы обслабить связь между объектами состояний создаем геттеры.
-        Имея геттеры в контексте нам не приходится в каждом конкретном состоянии
-        обращаться к классам др. состояний. Все обращения происходят через контекст,
-        который передается в конструкторы каждого из состояний.
-    """
-    def getNoQuarterState(self):
+    # Геттеры для получения объектов конкретных состояний.
+    # Чтобы обслабить связь между объектами состояний создаем геттеры.
+    # Имея геттеры в контексте нам не приходится в каждом конкретном состоянии
+    # обращаться к классам др. состояний. Все обращения происходят через контекст,
+    # который передается в конструкторы каждого из состояний.
+
+    def get_no_quarter_state(self):
         return self._noQuarterState
 
-    def getHasQuarterState(self):
+    def get_has_quarter_state(self):
         return self._hasQuarterState
 
-    def getSoldState(self):
+    def get_sold_state(self):
         return self._soldState
 
-    def getSoldOutState(self):
+    def get_sold_out_state(self):
         return self._soldOutState
-    
-    """ 
-        Метод смены состояния объекта
-    """
-    def setState(self, state: State):
+
+    def set_count(self, state: State):
+        """
+            Метод смены состояния объекта
+        """
         self._state = state
-    
-    def insertQuarter(self):
-        self._state.insertQuarter()
 
-    def ejectQuarter(self):
-        self._state.ejectQuarter()
+    def insert_quarter(self):
+        self._state.insert_quarter()
 
-    def turnCrank(self):
-        self._state.turnCrank()
+    def eject_quarter(self):
+        self._state.eject_quarter()
+
+    def turn_crank(self):
+        self._state.turn_crank()
         self._state.give()
 
-    def releaseGum(self):
+    def release_gum(self):
         if self._count > 0:
             print('Выдана одна жевачка')
-            self._count -=1
+            self._count -= 1
 
-    def getCount(self) -> int:
-        return self._count        
+    def get_count(self) -> int:
+        return self._count
+
 
 if __name__ == "__main__":
     machine = GumMachine(5)
 
-    machine.turnCrank()
-    machine.turnCrank()
+    machine.turn_crank()
+    machine.turn_crank()
 
-    machine.insertQuarter()
-    machine.turnCrank()
-    machine.ejectQuarter()
+    machine.insert_quarter()
+    machine.turn_crank()
+    machine.eject_quarter()
 
-    machine.insertQuarter()
-    machine.turnCrank()
+    machine.insert_quarter()
+    machine.turn_crank()
 
-    machine.insertQuarter()
-    machine.turnCrank()
+    machine.insert_quarter()
+    machine.turn_crank()
 
-    machine.insertQuarter()
-    machine.turnCrank()
+    machine.insert_quarter()
+    machine.turn_crank()
 
-    machine.insertQuarter()
-    machine.turnCrank()
+    machine.insert_quarter()
+    machine.turn_crank()
 
-    machine.insertQuarter()
-    machine.turnCrank()
+    machine.insert_quarter()
+    machine.turn_crank()
 
-    machine.insertQuarter() 
-    machine.turnCrank()
+    machine.insert_quarter()
+    machine.turn_crank()

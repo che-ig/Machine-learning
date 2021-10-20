@@ -1,8 +1,10 @@
 # from __future__ import annotations
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from random import randrange
 from typing import List
+
 
 class Observer(ABC):
     """
@@ -16,6 +18,7 @@ class Observer(ABC):
         Получить обновление от субъекта.
         """
         pass
+
 
 class Subject(ABC):
     """
@@ -44,24 +47,20 @@ class Subject(ABC):
         pass
 
 
-
 class ConcreteSubject(Subject):
-    """
-    Издатель владеет некоторым важным состоянием и оповещает наблюдателей о его
-    изменениях.
-    """
+
+    # Издатель владеет некоторым важным состоянием и оповещает наблюдателей о его
+    # изменениях.
+
+    # Для удобства в этой переменной хранится состояние Издателя, необходимое всем
+    # подписчикам.
 
     _state: int = None
-    """
-    Для удобства в этой переменной хранится состояние Издателя, необходимое всем
-    подписчикам.
-    """
+
+    # Список подписчиков. В реальной жизни список подписчиков может храниться в
+    # более подробном виде (классифицируется по типу события и т.д.)
 
     _observers: List[Observer] = []
-    """
-    Список подписчиков. В реальной жизни список подписчиков может храниться в
-    более подробном виде (классифицируется по типу события и т.д.)
-    """
 
     def attach(self, observer: Observer) -> None:
         print("Subject: Attached an observer.")
@@ -70,13 +69,11 @@ class ConcreteSubject(Subject):
     def detach(self, observer: Observer) -> None:
         self._observers.remove(observer)
 
-    """
-    Методы управления подпиской.
-    """
+    # Методы управления подпиской.
 
     def notify(self) -> None:
         """
-        Запуск обновления в каждом подписчике.
+            Запуск обновления в каждом подписчике.
         """
 
         print("Subject: Notifying observers...")
@@ -85,10 +82,10 @@ class ConcreteSubject(Subject):
 
     def some_business_logic(self) -> None:
         """
-        Обычно логика подписки – только часть того, что делает Издатель.
-        Издатели часто содержат некоторую важную бизнес-логику, которая
-        запускает метод уведомления всякий раз, когда должно произойти что-то
-        важное (или после этого).
+            Обычно логика подписки – только часть того, что делает Издатель.
+            Издатели часто содержат некоторую важную бизнес-логику, которая
+            запускает метод уведомления всякий раз, когда должно произойти что-то
+            важное (или после этого).
         """
 
         print("\nSubject: I'm doing something important.")
@@ -97,10 +94,12 @@ class ConcreteSubject(Subject):
         print(f"Subject: My state has just changed to: {self._state}")
         self.notify()
 
+
 """
     Конкретные Наблюдатели реагируют на обновления, выпущенные Издателем, к которому
     они прикреплены.
 """
+
 
 class ConcreteObserverA(Observer):
     def update(self, subject: Subject) -> None:

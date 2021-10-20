@@ -1,68 +1,79 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 
 class IAbstractFactory(ABC):
     @abstractmethod
-    def createProduct_A():
+    def create_product_a():
         pass
 
     @abstractmethod
-    def createProduct_B():
+    def create_product_b():
         pass
 
-class IProduct_A(ABC):
+
+class IProductA(ABC):
     @abstractmethod
     def do():
         pass
-class IProduct_B(ABC):
+
+
+class IProductB(ABC):
     @abstractmethod
     def run():
         pass
 
 
-class Product_A_1(IProduct_A):
+class ProductA1(IProductA):
     def do(self):
-        return 'do from Product_A_1'
+        return 'do from ProductA1'
 
-class Product_A_2(IProduct_A):
+
+class ProductA2(IProductA):
     def do(self):
-        return 'do from Product_A_2'
+        return 'do from ProductA2'
 
-class Product_B_1(IProduct_B):
-    def run(self):
-        return 'run from Product_B_1'
 
-class Product_B_2(IProduct_B):
+class ProductB1(IProductB):
     def run(self):
-        return 'run from Product_B_2'
+        return 'run from ProductB1'
+
+
+class ProductB2(IProductB):
+    def run(self):
+        return 'run from ProductB2'
+
+
 class FactoryOne(IAbstractFactory):
-    def createProduct_A(self):
-        return Product_A_1()
+    def create_product_a(self):
+        return ProductA1()
 
-    def createProduct_B(self):
-        return Product_B_1()
+    def create_product_b(self):
+        return ProductB1()
+
 
 class FactoryTwo(IAbstractFactory):
-    def createProduct_A(self):
-        return Product_A_2()
-        
-    def createProduct_B(self):
-        return Product_B_2()
+    def create_product_a(self):
+        return ProductA2()
+
+    def create_product_b(self):
+        return ProductB2()
+
 
 def client_code(factory):
-    prod_A = factory.createProduct_A()
-    prod_B = factory.createProduct_B()
-    print(prod_A.do())
-    print(prod_B.run())
+    prod_a = factory.create_product_a()
+    prod_b = factory.create_product_b()
+    print(prod_a.do())
+    print(prod_b.run())
 
 
 if __name__ == '__main__':
-    factoryType = input('Введите one или two ')
+    factory_type = input('Введите one или two ')
 
-    if factoryType == 'one':
+    if factory_type == 'one':
         factory = FactoryOne()
     else:
-        factory  = FactoryTwo()
-    
+        factory = FactoryTwo()
+
     client_code(factory)
-        

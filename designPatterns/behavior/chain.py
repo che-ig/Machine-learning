@@ -1,9 +1,10 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from enum import Enum
 
 
-class Type_request(Enum):
+class TypeRequest(Enum):
     WORK = "work"
     PERSONNAL = "personal"
     COMMON = "common"
@@ -24,16 +25,16 @@ class Request():
         Т.е это и есть запрос который пойдет по цепочке обязанностей в надежде,
         что его кто-нибудь обработает.
     """
-    def __init__(self, name: str, typeRequest: Type_request):
+    def __init__(self, name: str, type_request: TypeRequest):
         self.name = name
-        self._type_request = typeRequest
+        self._type_request = type_request
 
     @property
     def type_requst(self):
         return self._type_request
 
     @type_requst.setter
-    def type_request(self, type_request: Type_request):
+    def type_request(self, type_request: TypeRequest):
         self._type_request = type_request
 
 
@@ -65,7 +66,7 @@ class AbstractHandler(IHandler):
 
     def handle(self, request: Request):
         """
-            Метод обработки запроса. Если запрос не прошел проверку, то передаем его 
+            Метод обработки запроса. Если запрос не прошел проверку, то передаем его
             следующему обработчику в цепочке обязанностей.
         """
         result = self.check_request(request)
@@ -80,40 +81,40 @@ class AbstractHandler(IHandler):
 """
 
 
-class Receiver_Work(AbstractHandler):
+class ReceiverWork(AbstractHandler):
     def __init__(self, handler: AbstractHandler = None):
         self._next_handler = handler
 
     def check_request(self, request: Request) -> bool:
-        check = request.type_requst == Type_request.WORK
+        check = request.type_requst == TypeRequest.WORK
         if check:
-            print(f"Приступаем к обработке запроса типа {Type_request.WORK}")
+            print(f"Приступаем к обработке запроса типа {TypeRequest.WORK}")
         else:
             print("Запрос перается следующему обработчику")
         return check
 
 
-class Receiver_Personal(AbstractHandler):
+class ReceiverPersonal(AbstractHandler):
     def __init__(self, handler: AbstractHandler = None):
         self._next_handler = handler
 
     def check_request(self, request: Request) -> bool:
-        check = request.type_requst == Type_request.PERSONNAL
+        check = request.type_requst == TypeRequest.PERSONNAL
         if check:
-            print(f"Приступаем к обработке запроса типа {Type_request.PERSONNAL}")
+            print(f"Приступаем к обработке запроса типа {TypeRequest.PERSONNAL}")
         else:
             print("Запрос перается следующему обработчику")
         return check
 
 
-class Receiver_Common(AbstractHandler):
+class ReceiverCommon(AbstractHandler):
     def __init__(self, handler: AbstractHandler = None):
         self._next_handler = handler
 
     def check_request(self, request: Request) -> bool:
-        check = request.type_requst == Type_request.COMMON
+        check = request.type_requst == TypeRequest.COMMON
         if check:
-            print(f"Приступаем к обработке запроса типа {Type_request.COMMON}")
+            print(f"Приступаем к обработке запроса типа {TypeRequest.COMMON}")
         else:
             print("Запрос перается следующему обработчику")
         return check
@@ -128,14 +129,14 @@ def test_chain(receiver: AbstractHandler, request: Request):
 
 
 if __name__ == "__main__":
-    work = Receiver_Work()
-    person = Receiver_Personal(work)
-    common = Receiver_Common()
+    work = ReceiverWork()
+    person = ReceiverPersonal(work)
+    common = ReceiverCommon()
     common.handler = person
 
-    request_common = Request('common', Type_request.COMMON)
-    request_worker = Request('worker', Type_request.WORK)
-    request_personal = Request('personal', Type_request.PERSONNAL)
+    request_common = Request('common', TypeRequest.COMMON)
+    request_worker = Request('worker', TypeRequest.WORK)
+    request_personal = Request('personal', TypeRequest.PERSONNAL)
 
     test_chain(work, request_common)
     test_chain(common, request_personal)

@@ -1,21 +1,24 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
+
 
 class Dialog(ABC):
     '''
         Базовый класс создателя
     '''
     def work(self):
-        btn = self.createButton()
+        btn = self.create_button()
         btn.render()
 
-    '''
-        Фабричный метод. 
-        ОБЯЗАН бфть переопредеоенным субклассами
-    '''
     @abstractmethod
-    def createButton():
+    def create_button():
+        '''
+            Фабричный метод.
+            ОБЯЗАН бфть переопредеоенным субклассами
+        '''
         pass
+
 
 class IButton(ABC):
     '''
@@ -25,37 +28,42 @@ class IButton(ABC):
     def render():
         pass
 
+
 class WindowButton(IButton):
     '''
-        Конкретный продукт. 
+        Конкретный продукт.
         Субкласс конкретной кнопки под windows
     '''
     def render(self):
-        print('render windows button') 
+        print('render windows button')
+
 
 class LinuxButton(IButton):
     '''
-        Конкретный продукт. 
+        Конкретный продукт.
         Субкласс конкретной кнопки под linux
     '''
     def render(self):
         print('render lunux button')
 
+
 class WindowDailog(Dialog):
     '''
-        Конкретный фабричный метод. 
+        Конкретный фабричный метод.
         Создает конкретную кнопку под windows
     '''
-    def createButton(self) -> IButton:
+    def create_button(self) -> IButton:
         return WindowButton()
 
-class linuxDailog(Dialog):
+
+class LinuxDailog(Dialog):
     '''
-        Конкретный фабричный метод. 
+        Конкретный фабричный метод.
         Создает конкретную кнопку под linux
     '''
-    def createButton(self) -> IButton:
+    def create_button(self) -> IButton:
         return LinuxButton()
+
 
 def client_code(creator):
     '''
@@ -63,16 +71,17 @@ def client_code(creator):
         конкретных конкретных кнопок под разные ОС.
     '''
     creator.work()
-    
+
+
 if __name__ == '__main__':
-    typeButton = input('Ведите win или lunux ')
+    type_button = input('Ведите win или lunux ')
     '''
         Создаем конкретные фабрими для требуемых операционных систем
     '''
-    if typeButton == 'win':
+    if type_button == 'win':
         dialog = WindowDailog()
     else:
-        dialog = linuxDailog()
+        dialog = LinuxDailog()
 
     # Созданную фабрику передаем в клиентский код
     client_code(dialog)

@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 
+
 class ISubject(ABC):
-    """ 
+    """
         Интерфейс Субъекта объявляет общие операции как для Реального Субъекта, так
         и для Заместителя. Клиент думает, что работает с реальным объектом, но на самом
         деле с proxy. Разницу не видно т.к оба объекта реализуют идентичный интерфейс.
@@ -10,15 +11,17 @@ class ISubject(ABC):
     def request(self):
         pass
 
+
 class RealSubject(ISubject):
-    """ 
+    """
         Реальный объект. Содержит интересующие клиента методы.
     """
     def request(self):
         print("Вызвали метод request реальный объекта")
 
+
 class Proxy(ISubject):
-    """ 
+    """
         Прокси должен иметь одинаковый набор методов что и реальный объект
     """
     def __init__(self, real_subject):
@@ -35,19 +38,20 @@ class Proxy(ISubject):
 
     def log_access(self):
         print("Логируем обращение клиента к реальному объекту")
-    
+
 
 def client_code(subject: ISubject):
-    """ 
+    """
         Клиентский код должен работать со всеми объектами (как с реальными, так и
         заместителями) через интерфейс Субъекта, чтобы поддерживать как реальные
-        субъекты, так и заместителей. 
+        субъекты, так и заместителей.
     """
     subject.request()
 
+
 if __name__ == "__main__":
-    realSubject = RealSubject()
-    client_code(realSubject)
+    real_subject = RealSubject()
+    client_code(real_subject)
     print('\n')
-    proxy_subject = Proxy(realSubject)
+    proxy_subject = Proxy(real_subject)
     client_code(proxy_subject)
