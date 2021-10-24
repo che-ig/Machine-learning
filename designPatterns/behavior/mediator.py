@@ -12,23 +12,24 @@ class Events(Enum):
 
 class IMediator(ABC):
     """
-        Интерфейс посредника (медиатора) определяем метод по средствам которого компоненты
-        будут оповещать посредника о своих событиях.
-        Посредник может реагировать на события и передавать исполение др. компонентам.
+    Интерфейс посредника (медиатора) определяем метод по средствам которого компоненты \
+    будут оповещать посредника о своих событиях.
+    Посредник может реагировать на события и передавать исполение др. компонентам.
     """
+
     @abstractmethod
-    def notify(self, sender: object, event: Events):
+    def notify(self: IMediator, sender: object, event: Events) -> None:
         pass
 
 
 class ConcreateMediator(IMediator):
-    def __init__(self, comp_a: ComponentA, comp_b: ComponentB):
+    def __init__(self, comp_a: ComponentA, comp_b: ComponentB) -> None:
         self._component_a = comp_a
         self._component_a.mediator = self
         self._component_b = comp_b
         self._component_b.mediator = self
 
-    def notify(self, sender: object, event: Events):
+    def notify(self, sender: object, event: Events) -> None:
         if type(sender) is ComponentA:
             if event == Events.CLICK:
                 print("кликнули по ComponentA")
@@ -40,7 +41,7 @@ class BaseComponent():
         Базовый компонент обеспечивает минимальную функциональность и хранит экземпляр
         медиатора во внетреннем свойстве компонента.
     """
-    def __init__(self, mediator: IMediator = None):
+    def __init__(self, mediator: IMediator = None) -> None:
         self._mediator = mediator
 
     @property
@@ -48,7 +49,7 @@ class BaseComponent():
         return self._mediator
 
     @mediator.setter
-    def mediator(self, mediator: IMediator):
+    def mediator(self, mediator: IMediator) -> None:
         self._mediator = mediator
 
 

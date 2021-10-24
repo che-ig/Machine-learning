@@ -3,7 +3,9 @@ from typing import List
 
 
 class PizzaItem:
-    def __init__(self, number):
+    """Кусок питцы."""
+
+    def __init__(self, number: int) -> None:
         self.number = number
 
     def __str__(self):
