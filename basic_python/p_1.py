@@ -115,5 +115,40 @@ def anagram(s: str):
 
 ex_1 = 'abccbad'
 exa_2 = 10
-print(anagram(ex_1))
-print(anagram(exa_2))
+# print(anagram(ex_1))
+# print(anagram(exa_2))
+
+def find_equals(arr_a, arr_b):
+    dict_a = {}
+    res = []
+    for item in arr_a:
+        if not dict_a.get(item):
+            dict_a[item] = 1
+        else:
+            dict_a[item] += 1
+
+    for item in arr_b:
+        if item in dict_a and dict_a[item] > 0:
+            res.append(item)
+            dict_a[item] -= 1
+    return res
+
+# print(find_equals([1,2,2,3], [2,2]))
+# print(find_equals([1,2,3], [4]))
+# print(find_equals([1,1,1,2,3,4], [3,4]))
+
+def separate_elemenst(arr):
+    di_from_arr = {}
+    for item in arr:
+        val = sorted(item)
+        val = ''.join(val)
+        if not di_from_arr.get(val):
+            di_from_arr[val] = [item]
+        else:
+            di_from_arr[val].append(item)
+
+    res = [a for a in di_from_arr.values()]
+    return res
+
+elements = ["eat", "tea", "tan", "ate", "nat", "bat"]
+print(separate_elemenst(elements))
