@@ -1,3 +1,5 @@
+"""Модуль реализует паттерн - Посетитель."""
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -11,11 +13,11 @@ class IVistor(ABC):
         понять конкретный класс компонента, с которым он имеет дело.
     """
     @abstractmethod
-    def visit_for_corcreate_component_a(self, component: ConcreateComponentA):
+    def visit_for_concrete_component_a(self, component: ConcreteComponentA):
         pass
 
     @abstractmethod
-    def visit_for_corcreate_component_b(self, component: ConcreateComponentB):
+    def visit_for_concrete_component_b(self, component: ConcreteComponentB):
         pass
 
 
@@ -35,7 +37,7 @@ class IComponent(ABC):
 """
 
 
-class ConcreateComponentA(IComponent):
+class ConcreteComponentA(IComponent):
     def __init__(self, weight: int):
         self._weight = weight
 
@@ -44,7 +46,7 @@ class ConcreateComponentA(IComponent):
             Конкретный компонент должен знать какой метод посетиля необходимо вызвать,
             чтобы он подходил под текущий тип компонента.
         """
-        visitor.visit_for_corcreate_component_a(self)
+        visitor.visit_for_concrete_component_a(self)
 
     def get_weight(self):
         return self._weight
@@ -56,13 +58,13 @@ class ConcreateComponentA(IComponent):
         return "result from special_method_a_2"
 
 
-class ConcreateComponentB(IComponent):
+class ConcreteComponentB(IComponent):
     def __init__(self, length: int, mass: int):
         self._length = length
         self._mass = mass
 
     def accept(self, visitor: IVistor):
-        visitor.visit_for_corcreate_component_b(self)
+        visitor.visit_for_concrete_component_b(self)
 
     def get_length(self):
         return self._length
@@ -77,34 +79,33 @@ class ConcreateComponentB(IComponent):
         return "result from special_method_b_2"
 
 
-"""
-    Конкретные посетители реализуют для каждого типа компонента свою реализацию поведения.
-"""
+# Конкретные посетители реализуют для каждого типа компонента свою реализацию поведения.
 
 
-class ConcreateVisitorCalculateMass(IVistor):
-    def visit_for_corcreate_component_a(self, component: ConcreateComponentA):
+class ConcreteVisitorCalculateMass(IVistor):
+    def visit_for_concrete_component_a(self, component: ConcreteComponentA):
         result = component.get_weight()
         print(f"Объект веслит {result * 0.45} фунта")
 
-    def visit_for_corcreate_component_b(self, component: ConcreateComponentB):
+    def visit_for_concrete_component_b(self, component: ConcreteComponentB):
         result = component.get_mass()
         print(f"Объект веслит {result / 1000} тонн")
 
 
-class ConcreateVisitorLength(IVistor):
-    def visit_for_corcreate_component_a(self, component: ConcreateComponentA):
+class ConcreteVisitorLength(IVistor):
+    def visit_for_concrete_component_a(self, component: ConcreteComponentA):
         pass
 
-    def visit_for_corcreate_component_b(self, component: ConcreateComponentB):
+    def visit_for_concrete_component_b(self, component: ConcreteComponentB):
         result = component.get_length()
         print(f"Объект имеет длину {result / 10} дециметров")
 
 
 if __name__ == "__main__":
-    visitors = [ConcreateVisitorCalculateMass(), ConcreateVisitorLength()]
-    componetns = [ConcreateComponentA(200), ConcreateComponentB(250, 300)]
+    visitors = [ConcreteVisitorCalculateMass(), ConcreteVisitorLength()]
+    componetns = [ConcreteComponentA(200), ConcreteComponentB(250, 300)]
 
     for vis in visitors:
         for comp in componetns:
             comp.accept(vis)
+

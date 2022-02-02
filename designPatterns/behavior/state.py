@@ -1,12 +1,15 @@
+"""Модуль, реализующий паттерн - Состояние."""
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
 
 class State(ABC):
-    """
-        Интерфейс состояний. Все состояния должны реализовать абстрактные методы
-    """
+    """Интерфейс состояний."""
+
+    """Все состояния должны реализовать абстрактные методы."""
+
     @abstractmethod
     def insert_quarter(self):
         pass
@@ -25,9 +28,8 @@ class State(ABC):
 
 
 class HasQuarter(State):
-    """
-        Состояние когда клиент ввел моентку в автомат
-    """
+    """Состояние когда клиент ввел моентку в автомат."""
+
     def __init__(self, machine: GumMachine):
         self._machine = machine
 
@@ -36,26 +38,25 @@ class HasQuarter(State):
 
     def eject_quarter(self):
         print('Заберите свою монетку.')
-        self._machine.set_count(self._machine.get_no_quarter_state())
+        self._machine.set_state(self._machine.get_no_quarter_state())
 
     def turn_crank(self):
         print('Подождите')
-        self._machine.set_count(self._machine.get_sold_state())
+        self._machine.set_state(self._machine.get_sold_state())
 
     def give(self):
         print('Жевачка не выдана (она выдается в состояни sold)')
 
 
 class NoQuarter(State):
-    """
-        Состояние отсутствия монетки в автомате
-    """
+    """Состояние отсутствия монетки в автомате."""
+
     def __init__(self, machine: GumMachine):
         self._machine = machine
 
     def insert_quarter(self):
         print('Вы ввели монетку')
-        self._machine.set_count(self._machine.get_has_quarter_state())
+        self._machine.set_state(self._machine.get_has_quarter_state())
 
     def eject_quarter(self):
         print('Сначала вставьте монетку')
@@ -68,9 +69,8 @@ class NoQuarter(State):
 
 
 class Sold(State):
-    """
-        Состояние когда жевачка уже продана и вскоре будет выдана покупателю
-    """
+    """Состояние когда жевачка уже продана и вскоре будет выдана покупателю."""
+
     def __init__(self, machine: GumMachine):
         self._machine = machine
 
@@ -85,16 +85,15 @@ class Sold(State):
 
     def give(self):
         self._machine.release_gum()
-        if self._machine.get_count() > 0:
-            self._machine.set_count(self._machine.get_no_quarter_state())
+        if self._machine.get_state() > 0:
+            self._machine.set_state(self._machine.get_no_quarter_state())
         else:
-            self._machine.set_count(self._machine.get_sold_out_state())
+            self._machine.set_state(self._machine.get_sold_out_state())
 
 
 class SoldOUt(State):
-    """
-        Состояние пустого автомата.
-    """
+    """Состояние пустого автомата."""
+
     def __init__(self, machine: GumMachine):
         self._machine = machine
 
@@ -144,10 +143,8 @@ class GumMachine:
     def get_sold_out_state(self):
         return self._soldOutState
 
-    def set_count(self, state: State):
-        """
-            Метод смены состояния объекта
-        """
+    def set_state(self, state: State):
+        """Метод смены состояния объект."""
         self._state = state
 
     def insert_quarter(self):
@@ -165,7 +162,7 @@ class GumMachine:
             print('Выдана одна жевачка')
             self._count -= 1
 
-    def get_count(self) -> int:
+    def get_state(self) -> int:
         return self._count
 
 

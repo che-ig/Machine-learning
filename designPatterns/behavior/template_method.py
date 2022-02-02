@@ -1,3 +1,5 @@
+"""Модуль, реализующий паттерн - Шаблонный метод."""
+
 from abc import ABC, abstractmethod
 
 
