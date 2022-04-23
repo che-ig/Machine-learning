@@ -1,8 +1,8 @@
 function reduce(func, array, start=0) {
-    const len = arr.length;
+    const len = array.length;
     let res = start
     for (index=0; index < len; index++) {
-        res = func(res, array[index], index, arr);
+        res = func(res, array[index], index, array);
         
     }
     return res
@@ -61,7 +61,7 @@ function evry(func, arr, thisArg) {
 }
 
 function my(a, b) {
-    return a * b;
+    return a + b;
 }
 
 function my_2(a) {
