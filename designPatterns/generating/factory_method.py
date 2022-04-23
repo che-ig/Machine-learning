@@ -4,26 +4,21 @@ from abc import ABC, abstractmethod
 
 
 class Dialog(ABC):
-    '''
-        Базовый класс создателя
-    '''
+    '''Базовый класс создателя.'''
     def work(self):
         btn = self.create_button()
         btn.render()
 
     @abstractmethod
     def create_button():
-        '''
-            Фабричный метод.
-            ОБЯЗАН бфть переопредеоенным субклассами
-        '''
+        """Фабричный метод."""
+
+        """ОБЯЗАН быть переопределенным субклассами"""
         pass
 
 
 class IButton(ABC):
-    '''
-        Интерфейс продукта. В нашем случае  - кнопки интерфейса
-    '''
+    """Интерфейс продукта. В нашем случае  - кнопки интерфейса."""
     @abstractmethod
     def render():
         pass

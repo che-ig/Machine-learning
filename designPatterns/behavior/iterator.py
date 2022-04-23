@@ -8,7 +8,6 @@ from typing import List
 
 class PizzaItem:
     """Кусок питцы."""
-
     def __init__(self: PizzaItem, number: int) -> None:
         """Задаем номер куска пиццы."""
         self.number = number
@@ -20,8 +19,8 @@ class PizzaItem:
 
 class PizzaSliceIterator(Iterator):
     """Класс итератор."""
-
-    def __init__(self: PizzaSliceIterator, pizza: List[PizzaItem],
+    def __init__(self: PizzaSliceIterator,
+                 pizza: List[PizzaItem],
                  reverse: bool = False) -> None:
         """Инициализируем итератор."""
         self._pizza = pizza
@@ -41,9 +40,8 @@ class PizzaSliceIterator(Iterator):
 
 class PizzaAggregate(Iterable):
     def __init__(self: PizzaAggregate, amount_slices: int = 10) -> None:
-        self._slices = [PizzaItem(it+1) for it in range(amount_slices)]
-        print(f"Приготовили пиццу и порезали "
-              f"на {amount_slices} кусочков")
+        self._slices = [PizzaItem(it + 1) for it in range(amount_slices)]
+        print(f"Приготовили пиццу и порезали " f"на {amount_slices} кусочков")
 
     def amount_slices(self: PizzaAggregate) -> int:
         """Выводим количество кусков питццы."""
@@ -55,7 +53,7 @@ class PizzaAggregate(Iterable):
 
     def __iter__(self: PizzaAggregate) -> PizzaSliceIterator:
         """Метод возвращает объект типа Iterator."""
-        """Данный метод обязан обязан быть реализован т.к мы отнаследовались
+        """Данный метод обязан быть реализован т.к мы отнаследовались
             от Iterable. Также метод ОБЯЗАН возвращать объект типа Iterator."""
         return PizzaSliceIterator(self._slices)
 
@@ -64,7 +62,7 @@ if __name__ == "__main__":
     pizza = PizzaAggregate(5)
     for item in pizza:
         print("Это " + str(item))
-    print("*" * 8 + "Обход в обратную сторону" + "*"*8)
+    print("*" * 8 + "Обход в обратную сторону" + "*" * 8)
     iterator = pizza.get_reverse_iterator()
     for item in iterator:
         print("Это " + str(item))

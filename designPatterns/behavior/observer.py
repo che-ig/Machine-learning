@@ -66,10 +66,7 @@ class ConcreteSubject(Subject):
     # Методы управления подпиской.
 
     def notify(self) -> None:
-        """
-            Запуск обновления в каждом подписчике.
-        """
-
+        """Запуск обновления в каждом подписчике."""
         print("Subject: Notifying observers...")
         for observer in self._observers:
             observer.update(self)
