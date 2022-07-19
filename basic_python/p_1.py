@@ -152,3 +152,30 @@ def separate_elemenst(arr):
 
 elements = ["eat", "tea", "tan", "ate", "nat", "bat"]
 print(separate_elemenst(elements))
+
+def group_by():
+    a = [1,2,3,4,5,6,7,8,9,9]
+    b = ['c', 'a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']
+    d = {}
+    for i, j in zip(b, a):
+        if d.get(i):
+             d[i]+= j
+        else:
+             d[i] = j
+    return d
+
+def mod_five(arr, x):
+    res = []
+    for i in arr:
+        t = i % x
+        if( t == 0 ):
+            res.append(i)
+        else:
+            res.append( i + (x - t))
+    return res
+
+        
+
+if __name__ == '__main__':
+    # print(group_by())
+    print(mod_five([0, 2, 3, 12, 21, 30], 5))
