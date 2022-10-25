@@ -30,7 +30,7 @@ set linebreak
 inoremap jk <esc>
 
 syntax on
-let g:mapleader=','
+let g:mapleader='m'
 set hlsearch
 set incsearch
 
