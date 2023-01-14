@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy import Symbol, lambdify
+from sympy import Symbol, lambdify, nfloat
 
 # Используем функционал sympy
 sym_x = Symbol('x', real=True)
@@ -55,4 +55,27 @@ ax[2].plot(x, data_deriv_2, c='g', label='f\"(x)')
 
 plt.legend(fontsize=14)
 plt.grid()
+# ------------------------------
+fig_2, ax_2 = plt.subplots(1, 2, figsize=(12, 12))
+sym_t = Symbol('t', real=True)
+
+# args_g = np.arange(0, 200)
+args_g = np.linspace(10, 300, 300)
+g = sym_t**sym_t - 2**512
+# g = nfloat(sym_t**sym_t - 2**512)
+g_diff = g.diff(sym_t)
+
+fun_g = lambdify(sym_t, g, 'numpy')
+fun_diff_g = lambdify(sym_t, g_diff, 'numpy')
+
+data_fun_g = fun_g(args_g)
+data_fun_diff_g = fun_diff_g(args_g)
+
+ax_2[0].plot(args_g, data_fun_g, label='g\'(x)')
+ax_2[1].plot(args_g, data_fun_diff_g, label='g\"(x)')
+# Для каждой из осей включаем легенду и сетку
+for axis in ax_2.ravel():
+    axis.legend()
+    axis.grid()
+
 plt.show()

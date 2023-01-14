@@ -2,11 +2,18 @@
 set updatetime=2000
 set autoread
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
-
 set number
+
+" Табуляция, использование 4-х пробелов вместо \t
 set tabstop=4
+set shiftwidth=4
+set smarttab
 set expandtab
+
 set encoding=UTF-8
+set fileencoding=utf-8
+set termencoding=utf-8
+
 set noswapfile
 set mouse=a
 " Подсвечивать строку на которой находится курсор
@@ -20,24 +27,37 @@ set colorcolumn=80
 " - а если введена хотя бы одна большая (заглавная/прописная)
 "   буква, то будет искать регистро-зависимо
 set ignorecase
-set smartcase
+" set smartcase
+nnoremap  \s :set noignorecase!<CR>
 "
 " Перенос длинных строк с разбиением по пробелам, а не по символам
 " (слова переносятся целиком, soft wrap)
 set wrap
 set linebreak
 
+" И ещё одна маленькая настройка для того,
+" чтобы плагины (NERDTree, NERDCommenter и lightline)
+" вообще работали
+filetype plugin indent on
+
 inoremap jk <esc>
 
 syntax on
 let g:mapleader='q'
-set hlsearch
-set incsearch
 
-" Автообновление, при изменении файла извне
-set updatetime=2000
-set autoread
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
+" Оставляет подсветку после завершения поиска.
+" Чтобы очистить прошлый поиск :let @/ = ''
+" Включить
+set hlsearch
+" Выключить
+" set nohlsearch
+" Временно выключить
+" :noh
+
+" Выделять частичные совпадения сразу.
+" Полезно выключить для корректной замены (:substitute)
+" в режиме VISUAL
+set incsearch
 
 " включить проверку орфографии
 set spell spelllang=ru,en_us
@@ -61,9 +81,14 @@ call plug#begin()
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'chun-yang/auto-pairs'
 Plug 'tpope/vim-fugitive'
+" Плагин для отображения маркеров измененных файлов под git (и др. функции)
+Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'mileszs/ack.vim'
+
+" Плагин для комментирования строк.
+Plug 'tpope/vim-commentary'
 
 " fzf - Нечёткий поиск (fuzzy finding) части имени файла
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -195,5 +220,4 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %code: %%s'
 let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-m>'           " replace C-n
 let g:VM_maps['Find Subword Under'] = '<C-m>'           " replace visual C-n
-
 
