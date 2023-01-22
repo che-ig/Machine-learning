@@ -95,9 +95,9 @@ class NaiveBayesClassifier:
                 log_prob_not_spam += math.log(
                     self.word_probs[word]['prob_not_spam'])
 
-        prob_spam = math.exp(log_prob_if_spam)
-        prob_not_spam = math.exp(log_prob_not_spam)
-        return MessageProb(prob_spam, prob_not_spam)
+        probability_spam = math.exp(log_prob_if_spam)
+        probability_not_spam = math.exp(log_prob_not_spam)
+        return MessageProb(probability_spam, probability_not_spam)
 
     def count_words(self: NaiveBayesClassifier) -> Dictwords:
         """Подсчитываем встречаемость слов в спам и неспам сообщениях."""
