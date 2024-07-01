@@ -43,5 +43,6 @@ pyenv local my-virtual-env-3.12.4
 - `pyenv version` - просмотр текущего окружения python
 - `pyenv versins` - просмотр всех имеющихся окружений
 - `pyenv uninstall my-virtual-env` - удаление требуемого окружения
+- `pyenv install --list`  - Узнать все доступные версии Python
 
 
