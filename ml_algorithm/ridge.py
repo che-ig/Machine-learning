@@ -8,19 +8,15 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 np.random.seed(34)
 
-Data = namedtuple('Data', ['X', 'y'])
-SplitedData = namedtuple('SplitedData',
-                         ['X_train', 'y_train', 'X_test', 'y_test'])
-Errors = namedtuple('Errors', ['mse', 'r'])
+Data = namedtuple("Data", ["X", "y"])
+SplitedData = namedtuple("SplitedData", ["X_train", "y_train", "X_test", "y_test"])
+Errors = namedtuple("Errors", ["mse", "r"])
 
 
 class Ridge:
-    def __init__(self,
-                 reg_coef,
-                 lr=0.1,
-                 epoch=200,
-                 log_interval=200,
-                 print_log_loss=None):
+    def __init__(
+        self, reg_coef, lr=0.1, epoch=200, log_interval=200, print_log_loss=None
+    ):
         self.lr = lr
         self.epoch = epoch
         self.weights = []
@@ -57,14 +53,14 @@ class Ridge:
 
             self.weights -= self.lr * (dMSEdw + dRdw)
 
-        if (self.print_log_loss):
+        if self.print_log_loss:
             self.print_loss(self.X_train, self.y_train)
 
     def print_loss(self, X, y):
         mse, r = self.loss(X, y)
-        print(f'MSE: {round(mse, 9)}')
-        print(f'loss: {mse + r}')
-        print('-' * 25)
+        print(f"MSE: {round(mse, 9)}")
+        print(f"loss: {mse + r}")
+        print("-" * 25)
 
 
 def generate_data_for_ridge(n=300):
@@ -95,11 +91,8 @@ def get_splited_data(data):
 
 def visualisation_data(data, splited_data):
     plt.plot(data.X, data.y)
-    plt.scatter(splited_data.X_train,
-                splited_data.y_train,
-                c='r',
-                label='train')
-    plt.scatter(splited_data.X_test, splited_data.y_test, c='g', label='test')
+    plt.scatter(splited_data.X_train, splited_data.y_train, c="r", label="train")
+    plt.scatter(splited_data.X_test, splited_data.y_test, c="g", label="test")
     plt.show()
 
 
@@ -161,18 +154,17 @@ def work_for_ridge():
         model.fit(x_train_std, splited_data.y_train)
 
         mse_train, r_train = model.loss(model.X_train, splited_data.y_train)
-        mse_test, r_test = model.loss(x_test_std_added_clm,
-                                      splited_data.y_test)
+        mse_test, r_test = model.loss(x_test_std_added_clm, splited_data.y_test)
 
         scores_train.append(mse_train + r_train)
         scores_test.append(mse_test + r_test)
-        print(f'r: {r}')
+        print(f"r: {r}")
         model.print_loss(model.X_train, splited_data.y_train.reshape(-1, 1))
 
-    plt.plot(range_r, scores_train, c='g', label='Train')
-    plt.plot(range_r, scores_test, c='r', label='Test')
-    plt.xlabel('r')
-    plt.ylabel('mse')
+    plt.plot(range_r, scores_train, c="g", label="Train")
+    plt.plot(range_r, scores_test, c="r", label="Test")
+    plt.xlabel("r")
+    plt.ylabel("mse")
     plt.legend()
     plt.show()
 
@@ -185,5 +177,5 @@ def work_for_ridge():
     # model.print_loss(model.X_train, splited_data.y_train.reshape(-1, 1))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     work_for_ridge()

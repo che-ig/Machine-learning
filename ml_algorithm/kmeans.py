@@ -18,12 +18,15 @@ plt.show()
 
 class KMeans:
     """Класс, реализующий алгоритм kmeans."""
-    def __init__(self: KMeans,
-                 X,
-                 k: int,
-                 *,
-                 init_method: str = 'kmeans++',
-                 track_history: bool = False) -> None:
+
+    def __init__(
+        self: KMeans,
+        X,
+        k: int,
+        *,
+        init_method: str = "kmeans++",
+        track_history: bool = False,
+    ) -> None:
         """Метод инициализации класса."""
         self.X = X
         self.k = k
@@ -34,13 +37,13 @@ class KMeans:
 
     def train(self: KMeans) -> None:
         """Метод, отвечающий за обучение kmeans."""
-        if self.init_method == 'kmeans++':
+        if self.init_method == "kmeans++":
             self.init_kmeans_pp()
         else:
             self.centroids = self.X[np.random.choice(len(self.X), self.k)]
 
         if self.track_history:
-            self.history = {'centroids': [self.centroids], 'clusters': []}
+            self.history = {"centroids": [self.centroids], "clusters": []}
 
         has_converted = False
 
@@ -50,16 +53,15 @@ class KMeans:
 
             # Если разница между вновь подсчитанными центроидами и
             # центроидами на предыдущей итерации меньше 1e-5 то выходим из цикла.
-            has_converted = np.linalg.norm(new_centroids -
-                                           self.centroids) < 1e-5
+            has_converted = np.linalg.norm(new_centroids - self.centroids) < 1e-5
             self.centroids = new_centroids
             self.iters_count += 1
 
             # На каждом шаге пересчета центроидов сохраняем текущие
             # центроиды и разметку данных.
             if self.track_history:
-                self.history['centroids'].append(self.centroids)
-                self.history['clusters'].append(clusters_assignment)
+                self.history["centroids"].append(self.centroids)
+                self.history["clusters"].append(clusters_assignment)
 
             # 100 итераций вполне достаточно чтобы прекратить обучение
             # если не выйдем по условию веше.
@@ -67,14 +69,13 @@ class KMeans:
                 break
 
         if self.track_history:
-            print(f'Алгоритм сошелся за {self.iters_count} итераций.')
+            print(f"Алгоритм сошелся за {self.iters_count} итераций.")
 
     def assign_clusters(self: KMeans):
         """Присваиваем метки данным, согласно их близости к центроидам."""
-        return np.array([
-            np.argmin(np.linalg.norm(x - self.centroids, axis=1))
-            for x in self.X
-        ])
+        return np.array(
+            [np.argmin(np.linalg.norm(x - self.centroids, axis=1)) for x in self.X]
+        )
 
     def evaluate(self: KMeans) -> float:
         """Высчитываем сумму расстояний от центроида до его меток."""
@@ -83,7 +84,8 @@ class KMeans:
         for k in range(self.k):
             cluster = self.X[cluster_assignment == k]
             sum_distance_in_centroid += np.sum(
-                np.linalg.norm(self.centroids[k] - cluster, axis=1))
+                np.linalg.norm(self.centroids[k] - cluster, axis=1)
+            )
         return sum_distance_in_centroid
 
     def move_centroids(self: KMeans, clusters_assignment):
@@ -129,27 +131,26 @@ class KMeans:
         self.centroids = np.array(centroids)
 
     def pplot(self, data, centroids):
-        plt.scatter(data[:, 0],
-                    data[:, 1],
-                    marker='.',
-                    color='gray',
-                    label='data points')
-        plt.scatter(centroids[:-1, 0],
-                    centroids[:-1, 1],
-                    color='black',
-                    label='previously selected centroids')
-        plt.scatter(centroids[-1, 0],
-                    centroids[-1, 1],
-                    color='red',
-                    label='next centroid')
-        plt.title('Select % d th centroid' % (centroids.shape[0]))
+        plt.scatter(
+            data[:, 0], data[:, 1], marker=".", color="gray", label="data points"
+        )
+        plt.scatter(
+            centroids[:-1, 0],
+            centroids[:-1, 1],
+            color="black",
+            label="previously selected centroids",
+        )
+        plt.scatter(
+            centroids[-1, 0], centroids[-1, 1], color="red", label="next centroid"
+        )
+        plt.title("Select % d th centroid" % (centroids.shape[0]))
 
         plt.legend()
         plt.show()
 
 
-if __name__ == '__main__':
-    kmeans = KMeans(X, 4, init_method='kmeans++', track_history=True)
+if __name__ == "__main__":
+    kmeans = KMeans(X, 4, init_method="kmeans++", track_history=True)
     kmeans.train()
 
     # Выведем историю изменения меток и кластеров.
@@ -157,11 +158,9 @@ if __name__ == '__main__':
     fig, ax = plt.subplots(iters_count)
     fig.set(figheight=8 * iters_count, figwidth=8)
     for i in range(iters_count):
-        ax[i].scatter(kmeans.X[:, 0],
-                      kmeans.X[:, 1],
-                      c=kmeans.history['clusters'][i])
-        his = kmeans.history['centroids']
-        ax[i].scatter(his[i][:, 0], his[i][:, 1], s=100, c='r', marker='x')
+        ax[i].scatter(kmeans.X[:, 0], kmeans.X[:, 1], c=kmeans.history["clusters"][i])
+        his = kmeans.history["centroids"]
+        ax[i].scatter(his[i][:, 0], his[i][:, 1], s=100, c="r", marker="x")
     plt.show()
 
     # Применим метод плеча.
@@ -170,7 +169,7 @@ if __name__ == '__main__':
     # меняется это расстояниие.
     score = []
     for k in range(2, 8):
-        km = KMeans(X, k, init_method='')
+        km = KMeans(X, k, init_method="")
         km.train()
         score.append(km.evaluate())
     plt.plot(range(2, 8), score)
@@ -178,9 +177,7 @@ if __name__ == '__main__':
     # Выводим итоговый график с размеченными данными.
     plt.figure(figsize=(8, 8))
     plt.scatter(kmeans.X[:, 0], kmeans.X[:, 1], c=kmeans.assign_clusters())
-    plt.scatter(kmeans.centroids[:, 0],
-                kmeans.centroids[:, 1],
-                c='r',
-                s=150,
-                marker='*')
+    plt.scatter(
+        kmeans.centroids[:, 0], kmeans.centroids[:, 1], c="r", s=150, marker="*"
+    )
     plt.show()

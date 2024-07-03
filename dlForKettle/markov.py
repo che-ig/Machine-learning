@@ -5,11 +5,12 @@ import string
 import random
 
 # global variables
-suffix_map = {}        # map from prefixes to a list of suffixes
-prefix = ()            # current tuple of words
+suffix_map = {}  # map from prefixes to a list of suffixes
+prefix = ()  # current tuple of words
 
 # Делаем каталог с исполняемым файлом текущим
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 
 def process_file(fileName, order=2):
     """Reads a file and performs Markov analysis.
@@ -22,7 +23,7 @@ def process_file(fileName, order=2):
         skip_gutenberg_header(fp)
 
         for line in fp:
-            if line.startswith('*** END OF THIS'): 
+            if line.startswith("*** END OF THIS"):
                 break
 
             for word in line.rstrip().split():
@@ -34,7 +35,7 @@ def skip_gutenberg_header(fp):
     fp: open file object
     """
     for line in fp:
-        if line.startswith('*** START OF THIS'):
+        if line.startswith("*** START OF THIS"):
             break
 
 
@@ -42,7 +43,7 @@ def process_word(word, order=2):
     """Processes each word.
     word: string
     order: integer
-    During the first few iterations, all we do is store up the words; 
+    During the first few iterations, all we do is store up the words;
     after that we start adding entries to the dictionary.
     """
     global prefix
@@ -66,18 +67,18 @@ def random_text(n=100):
     """
     # choose a random prefix (not weighted by frequency)
     start = random.choice(list(suffix_map.keys()))
-    
+
     for i in range(n):
         suffixes = suffix_map.get(start, None)
         if suffixes == None:
             # if the start isn't in map, we got to the end of the
             # original text, so we have to start again.
-            random_text(n-i)
+            random_text(n - i)
             return
 
         # choose a random suffix
         word = random.choice(suffixes)
-        print(word, end=' ')
+        print(word, end=" ")
         start = shift(start, word)
 
 
@@ -90,17 +91,17 @@ def shift(t, word):
     return t[1:] + (word,)
 
 
-def main(script, filename='emma.txt', n=100, order=2):
+def main(script, filename="emma.txt", n=100, order=2):
     try:
         n = int(n)
         order = int(order)
     except ValueError:
-        print('Usage: %d filename [# of words] [prefix length]' % script)
-    else: 
+        print("Usage: %d filename [# of words] [prefix length]" % script)
+    else:
         process_file(filename, order)
         random_text(n)
         print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(*sys.argv)

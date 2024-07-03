@@ -24,7 +24,7 @@ ax.plot(x1, y1 + 3)
 ax.plot(x2, y2 + 3)
 ax.plot(x3, y3 + 3)
 
-ax.set(title='Бета, Гамма, Паретто распределения')
+ax.set(title="Бета, Гамма, Паретто распределения")
 
 ####################################################
 
@@ -47,8 +47,8 @@ ax_1.plot(x4, y4)
 ax_2.imshow(img)
 
 # Добавляем заголовки к Axes
-ax_1.set(title='sin(x)')
-ax_2.set(title='img')
+ax_1.set(title="sin(x)")
+ax_2.set(title="img")
 
 # Альтернатива с помощью subplots (получим тоже самое что и выше)
 fig_2, ax_4 = plt.subplots(nrows=2, ncols=1)
@@ -57,7 +57,7 @@ fig_2, ax_4 = plt.subplots(nrows=2, ncols=1)
 ax_4[0].plot(x4, y4)
 ax_4[1].imshow(img)
 
-ax_4[0].set(title='sin(x)')
-ax_4[1].set(title='img')
+ax_4[0].set(title="sin(x)")
+ax_4[1].set(title="img")
 
 plt.show()

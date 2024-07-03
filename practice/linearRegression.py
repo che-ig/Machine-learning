@@ -14,12 +14,12 @@ print(r2_score)
 
 # Модель содержит атрибут intercept, который представляет собой
 # коэффициент b0, и coef_, который представляет b1 коэффициент.
-print('mode.intercept_ ', model.intercept_)
-print('slope', model.coef_)
+print("mode.intercept_ ", model.intercept_)
+print("slope", model.coef_)
 
 # Предскажем ответ
 res = model.predict(x)
 
 # Расчетный ответ
 calculated_res = model.coef_ * np.ravel(x) + model.intercept_
-print(res, calculated_res, sep='\n')
+print(res, calculated_res, sep="\n")

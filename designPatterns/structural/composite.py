@@ -5,9 +5,10 @@ from abc import ABC, abstractmethod
 
 class IComponent(ABC):
     """
-        Базовый класс Компонент объявляет общие операции как для простых, так и для
-        сложных объектов структуры.
+    Базовый класс Компонент объявляет общие операции как для простых, так и для
+    сложных объектов структуры.
     """
+
     @property
     def parent(self) -> IComponent:
         return self._parent

@@ -34,18 +34,18 @@ class HasQuarter(State):
         self._machine = machine
 
     def insert_quarter(self):
-        print('Вы уже ввели моненту. Вторую ввести нельзя')
+        print("Вы уже ввели моненту. Вторую ввести нельзя")
 
     def eject_quarter(self):
-        print('Заберите свою монетку.')
+        print("Заберите свою монетку.")
         self._machine.set_state(self._machine.get_no_quarter_state())
 
     def turn_crank(self):
-        print('Подождите')
+        print("Подождите")
         self._machine.set_state(self._machine.get_sold_state())
 
     def give(self):
-        print('Жевачка не выдана (она выдается в состояни sold)')
+        print("Жевачка не выдана (она выдается в состояни sold)")
 
 
 class NoQuarter(State):
@@ -55,17 +55,17 @@ class NoQuarter(State):
         self._machine = machine
 
     def insert_quarter(self):
-        print('Вы ввели монетку')
+        print("Вы ввели монетку")
         self._machine.set_state(self._machine.get_has_quarter_state())
 
     def eject_quarter(self):
-        print('Сначала вставьте монетку')
+        print("Сначала вставьте монетку")
 
     def turn_crank(self):
-        print('Сначала вставьте монетку, а потом дергайте за рычаг')
+        print("Сначала вставьте монетку, а потом дергайте за рычаг")
 
     def give(self):
-        print('Жевачка выдается только за монетку')
+        print("Жевачка выдается только за монетку")
 
 
 class Sold(State):
@@ -75,13 +75,13 @@ class Sold(State):
         self._machine = machine
 
     def insert_quarter(self):
-        print('Подождите выдачи жевачки')
+        print("Подождите выдачи жевачки")
 
     def eject_quarter(self):
-        print('На этом этапе возврат невозможен')
+        print("На этом этапе возврат невозможен")
 
     def turn_crank(self):
-        print('Вы уже дернули за рычаг')
+        print("Вы уже дернули за рычаг")
 
     def give(self):
         self._machine.release_gum()
@@ -98,23 +98,24 @@ class SoldOUt(State):
         self._machine = machine
 
     def insert_quarter(self):
-        print('Все жевачки проданы')
+        print("Все жевачки проданы")
 
     def eject_quarter(self):
-        print('Вы не вставили монетку')
+        print("Вы не вставили монетку")
 
     def turn_crank(self):
-        print('В автомате нет жевачки')
+        print("В автомате нет жевачки")
 
     def give(self):
-        print('Жевачка не выдана т.к автомат пуст')
+        print("Жевачка не выдана т.к автомат пуст")
 
 
 class GumMachine:
     """
-        Класс аппарата с жевачкой. Это класс контекста, который
-        делегирует вызовы клиента объектам состояний.
+    Класс аппарата с жевачкой. Это класс контекста, который
+    делегирует вызовы клиента объектам состояний.
     """
+
     def __init__(self, count: int):
         self._count = count
         self._noQuarterState = NoQuarter(self)
@@ -159,7 +160,7 @@ class GumMachine:
 
     def release_gum(self):
         if self._count > 0:
-            print('Выдана одна жевачка')
+            print("Выдана одна жевачка")
             self._count -= 1
 
     def get_state(self) -> int:

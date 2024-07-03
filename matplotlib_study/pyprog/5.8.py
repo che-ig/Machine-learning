@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Contour - линии уровней.
-x, y = np.mgrid[-3 * np.pi:3 * np.pi:100j, -3 * np.pi:3 * np.pi:100j]
+x, y = np.mgrid[-3 * np.pi : 3 * np.pi : 100j, -3 * np.pi : 3 * np.pi : 100j]
 z = np.sinc(x) + np.cos(y)
 fig, ax = plt.subplots()
 ax.contour(z, levels=20)

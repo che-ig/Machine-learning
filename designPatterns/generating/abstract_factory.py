@@ -29,22 +29,22 @@ class IProductB(ABC):
 
 class ProductA1(IProductA):
     def do(self):
-        return 'do from ProductA1'
+        return "do from ProductA1"
 
 
 class ProductA2(IProductA):
     def do(self):
-        return 'do from ProductA2'
+        return "do from ProductA2"
 
 
 class ProductB1(IProductB):
     def run(self):
-        return 'run from ProductB1'
+        return "run from ProductB1"
 
 
 class ProductB2(IProductB):
     def run(self):
-        return 'run from ProductB2'
+        return "run from ProductB2"
 
 
 class FactoryOne(IAbstractFactory):
@@ -70,10 +70,10 @@ def client_code(factory):
     print(prod_b.run())
 
 
-if __name__ == '__main__':
-    factory_type = input('Введите one или two ')
+if __name__ == "__main__":
+    factory_type = input("Введите one или two ")
 
-    if factory_type == 'one':
+    if factory_type == "one":
         factory = FactoryOne()
     else:
         factory = FactoryTwo()

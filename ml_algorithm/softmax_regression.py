@@ -14,7 +14,7 @@ X, y = datasets.make_classification(
     n_redundant=0,
     n_classes=4,
     n_samples=500,
-    n_clusters_per_class=1  # кол. кластеров в классе
+    n_clusters_per_class=1,  # кол. кластеров в классе
 )
 
 X_train, X_test, y_train, y_test = train_test_split(X, y)
@@ -22,6 +22,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y)
 
 class SoftMaxRegression:
     """Класс мультиклассовой регрессии."""
+
     def __init__(self: SoftMaxRegression) -> None:
         """Конструктор класса."""
         self.classes = None
@@ -50,8 +51,9 @@ class SoftMaxRegression:
         # Рекомендуется из набора данных вычесть макс. зн.
         # для устойчивости решения.
         modif_sum_k = sum_k - np.max(sum_k)
-        softmax = np.exp(modif_sum_k) \
-            / np.sum(np.exp(modif_sum_k), axis=1).reshape(-1, 1)
+        softmax = np.exp(modif_sum_k) / np.sum(np.exp(modif_sum_k), axis=1).reshape(
+            -1, 1
+        )
         return softmax
 
     def fit(self: SoftMaxRegression, X, y) -> None:
@@ -77,8 +79,7 @@ class SoftMaxRegression:
             self.weights -= dw * self.learning_rate
 
             # Это функция издержек перекрестной энтропии.
-            self.log_loss.append(-np.mean(np.log(prob_k[np.arange(len(y)),
-                                                        y])))
+            self.log_loss.append(-np.mean(np.log(prob_k[np.arange(len(y)), y])))
             # Вычисляем score на каждой итерации обучения.
             self.train_score.append(self.score(self.predict(X), y))
 
@@ -99,13 +100,13 @@ class SoftMaxRegression:
 
 
 def show_graph(log_loss, train_score) -> None:
-    plt.plot(log_loss, label='log_loss')
-    plt.plot(train_score, label='train_score')
+    plt.plot(log_loss, label="log_loss")
+    plt.plot(train_score, label="train_score")
     plt.legend()
     plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sm = SoftMaxRegression()
     sm.fit(X_train, y_train)
     predict = sm.predict(X_test)

@@ -2,22 +2,23 @@ import time
 import turtle
 
 t = time.time()
-countDays = 60*60*24
+countDays = 60 * 60 * 24
 print(t // countDays)
+
 
 def draw(t, length, n):
     if n == 0:
         return
     angle = 50
-    t.fd(length*n)
+    t.fd(length * n)
     t.lt(angle)
     print(n)
-    draw(t, length, n-1)
-    t.rt(2*angle)
-    print('-- ', n)
-    draw(t, length, n-1)
+    draw(t, length, n - 1)
+    t.rt(2 * angle)
+    print("-- ", n)
+    draw(t, length, n - 1)
     t.lt(angle)
-    t.bk(length*n)
+    t.bk(length * n)
 
 
 t = turtle.Turtle()

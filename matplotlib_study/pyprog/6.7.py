@@ -9,36 +9,38 @@ ax[0].plot(x, y)
 ax[0].grid()
 
 # Добавить подписи к осям.
-ax[0].set_xlabel('время (с)')
-ax[0].set_ylabel('скорость (м/c)')
+ax[0].set_xlabel("время (с)")
+ax[0].set_ylabel("скорость (м/c)")
 
 # Методы set_xlabel и set_ylabel как и метод Axes.text(), принимает целый ряд
 # параметров, отвечающих за отображение текста.
 ax[1].plot(x, y)
 ax[1].set_xlabel(
-    'время (с)',
+    "время (с)",
     fontsize=15,  # Размер шрифта
-    color='red',  # Цвет шрифта
+    color="red",  # Цвет шрифта
     # Параметры области текста
     bbox={
-        'boxstyle': 'rarrow',  # Форма области
-        'pad': 0.1,  # Отступы вокруг текста
-        'facecolor': 'white',  # Цвет заливки области
-        'edgecolor': 'red',  # Цвет рамки
-        'linewidth': 2  # Ширина линии
-    })
+        "boxstyle": "rarrow",  # Форма области
+        "pad": 0.1,  # Отступы вокруг текста
+        "facecolor": "white",  # Цвет заливки области
+        "edgecolor": "red",  # Цвет рамки
+        "linewidth": 2,  # Ширина линии
+    },
+)
 
 ax[1].set_ylabel(
-    'скорость (м/с)',
+    "скорость (м/с)",
     fontsize=15,  # Размер шрифта
-    color='red',  # Цвет шрифта
+    color="red",  # Цвет шрифта
     # Параметры области текста
     bbox={
-        'boxstyle': 'rarrow',  # Форма области
-        'pad': 0.1,  # Отступы вокруг текста
-        'facecolor': 'white',  # Цвет заливки области
-        'edgecolor': 'red',  # Цвет рамки
-        'linewidth': 2  # Ширина линии
-    })
+        "boxstyle": "rarrow",  # Форма области
+        "pad": 0.1,  # Отступы вокруг текста
+        "facecolor": "white",  # Цвет заливки области
+        "edgecolor": "red",  # Цвет рамки
+        "linewidth": 2,  # Ширина линии
+    },
+)
 
 plt.show()

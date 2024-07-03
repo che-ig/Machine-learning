@@ -20,8 +20,8 @@ b = np.cos(t) / 2
 c = np.cos(t) / 4
 ax[2].fill(z, a, z + 2, b, z + 4, c)
 
-ax[0].set(facecolor='seashell')
-ax[1].set(title='Закрашенный график', facecolor='seashell')
-fig.set(facecolor='floralwhite', figwidth=12, figheight=12)
+ax[0].set(facecolor="seashell")
+ax[1].set(title="Закрашенный график", facecolor="seashell")
+fig.set(facecolor="floralwhite", figwidth=12, figheight=12)
 
 plt.show()

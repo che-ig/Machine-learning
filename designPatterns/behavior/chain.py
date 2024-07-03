@@ -16,16 +16,19 @@ class TypeRequest(Enum):
 
 class IHandler(ABC):
     """Интерфейс обработчика цепочки обязанностей."""
+
     @abstractmethod
     def handle(self: IHandler, request: Request) -> None:
         """Метод обработки запроса."""
         pass
 
 
-class Request():
+class Request:
     """Класс запроса."""
+
     """Т.е это и есть запрос который пойдет по цепочке обязанностей в надежде,
     что его кто-нибудь обработает."""
+
     def __init__(self: Request, name: str, type_request: TypeRequest) -> None:
         """Инициализация обьекта запроса."""
         self.name = name
@@ -44,10 +47,11 @@ class Request():
 
 class AbstractHandler(IHandler):
     """Абстрактный класс обработчика запроса."""
+
     """Поведение цепочки по умолчанию может быть реализовано внутри базового класса
         обработчика."""
-    def __init__(self: AbstractHandler,
-                 handler: AbstractHandler = None) -> None:
+
+    def __init__(self: AbstractHandler, handler: AbstractHandler = None) -> None:
         """Иницаализация объекта обработчика запроса."""
         self._next_handler = handler
 
@@ -83,6 +87,7 @@ class AbstractHandler(IHandler):
 
 class ReceiverWork(AbstractHandler):
     """Класс для обработки запроса типа - WORK."""
+
     def __init__(self: ReceiverWork, handler: AbstractHandler = None) -> None:
         """Метод инициализации объекта ReceiverWork."""
         self._next_handler = handler
@@ -99,8 +104,8 @@ class ReceiverWork(AbstractHandler):
 
 class ReceiverPersonal(AbstractHandler):
     """Класс для обработки запроса типа - PERSONNAL."""
-    def __init__(self: ReceiverPersonal,
-                 handler: AbstractHandler = None) -> None:
+
+    def __init__(self: ReceiverPersonal, handler: AbstractHandler = None) -> None:
         """Метод инициализации объекта PERSONNAL."""
         self._next_handler = handler
 
@@ -108,8 +113,7 @@ class ReceiverPersonal(AbstractHandler):
         """Метод для проверки и обработки запроса типа - PERSONNAL."""
         check = request.type_requst == TypeRequest.PERSONNAL
         if check:
-            print(
-                f"Приступаем к обработке запроса типа {TypeRequest.PERSONNAL}")
+            print(f"Приступаем к обработке запроса типа {TypeRequest.PERSONNAL}")
         else:
             print("Запрос перается следующему обработчику")
         return check
@@ -117,8 +121,8 @@ class ReceiverPersonal(AbstractHandler):
 
 class ReceiverCommon(AbstractHandler):
     """Класс для обработки запроса типа - COMMON."""
-    def __init__(self: ReceiverCommon,
-                 handler: AbstractHandler = None) -> None:
+
+    def __init__(self: ReceiverCommon, handler: AbstractHandler = None) -> None:
         """Метод инициализации объекта COMMON."""
         self._next_handler = handler
 
@@ -144,9 +148,9 @@ if __name__ == "__main__":
     common = ReceiverCommon()
     common.handler = person
 
-    request_common = Request('common', TypeRequest.COMMON)
-    request_worker = Request('worker', TypeRequest.WORK)
-    request_personal = Request('personal', TypeRequest.PERSONNAL)
+    request_common = Request("common", TypeRequest.COMMON)
+    request_worker = Request("worker", TypeRequest.WORK)
+    request_personal = Request("personal", TypeRequest.PERSONNAL)
 
     test_chain(work, request_common)
     test_chain(common, request_personal)

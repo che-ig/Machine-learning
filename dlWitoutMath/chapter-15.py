@@ -1,7 +1,9 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-import seaborn as sns ; sns.set()
+import seaborn as sns
+
+sns.set()
 from sklearn import linear_model
 
 np.random.seed(42)
@@ -32,11 +34,11 @@ y_right = ridge_estimator.predict(np.reshape([x_right], [-1, 1]))
 
 plt.subplot(1, 2, 1)
 plt.scatter(x_vals, y_vals)
-plt.plot([x_left, x_right], [y_left, y_right], 'o-.r')
-plt.title('original data with best line')
+plt.plot([x_left, x_right], [y_left, y_right], "o-.r")
+plt.title("original data with best line")
 
 plt.subplot(1, 2, 2)
 plt.scatter(x_vals, y_vals)
-plt.title('original data')
+plt.title("original data")
 
 plt.show()

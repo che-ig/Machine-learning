@@ -1,14 +1,58 @@
-from stack import Stack 
+from stack import Stack
 
-vert = ((0, 1), (1, 2), (2, 3), (1, 5), (1, 4), (3, 7), (3, 5),
-         (5, 7), (4, 6), (6, 8), (5, 8), (8, 9), (7, 9), (1, 10), (10, 9),
-         
-         (11, 12), (11, 13), (12, 14), (12, 15))
-vert_2 = ((0, 1), (0, 4), (0, 5), (1, 2), (1, 6), (2, 3), (2, 7),
-        (3, 4), (3, 8), (4, 9), (5, 7), (5, 8), (6, 8), (6, 9), (7, 9))
+vert = (
+    (0, 1),
+    (1, 2),
+    (2, 3),
+    (1, 5),
+    (1, 4),
+    (3, 7),
+    (3, 5),
+    (5, 7),
+    (4, 6),
+    (6, 8),
+    (5, 8),
+    (8, 9),
+    (7, 9),
+    (1, 10),
+    (10, 9),
+    (11, 12),
+    (11, 13),
+    (12, 14),
+    (12, 15),
+)
+vert_2 = (
+    (0, 1),
+    (0, 4),
+    (0, 5),
+    (1, 2),
+    (1, 6),
+    (2, 3),
+    (2, 7),
+    (3, 4),
+    (3, 8),
+    (4, 9),
+    (5, 7),
+    (5, 8),
+    (6, 8),
+    (6, 9),
+    (7, 9),
+)
 
-graph_3 = [[1,4,5], [0,2,6], [1,3,7], [2,4,8], [0,3,9], [0,7,8],
-         [1,8,9], [2,5,9], [3,5,6], [4,6,7]]
+graph_3 = [
+    [1, 4, 5],
+    [0, 2, 6],
+    [1, 3, 7],
+    [2, 4, 8],
+    [0, 3, 9],
+    [0, 7, 8],
+    [1, 8, 9],
+    [2, 5, 9],
+    [3, 5, 6],
+    [4, 6, 7],
+]
+
+
 def createGraph(vertexes):
     graph = {}
     for i, j in vertexes:
@@ -19,6 +63,7 @@ def createGraph(vertexes):
         graph[i].add(j)
         graph[j].add(i)
     return graph
+
 
 def createGraphList(vertexes):
     graph = {}
@@ -36,14 +81,13 @@ def createGraphList(vertexes):
         val.sort()
         linkedList[key] = val
 
-    return linkedList    
+    return linkedList
+
 
 def dfs(start_vertex, graph):
 
     used = set()
-    distance = {
-        start_vertex: 0
-    }
+    distance = {start_vertex: 0}
     parant = {}
     parant[start_vertex] = start_vertex
     _stack = Stack()
@@ -53,7 +97,7 @@ def dfs(start_vertex, graph):
 
         for item in graph[vertex]:
             if not distance.get(item) and item != start_vertex:
-                distance[item] = distance[vertex] +1
+                distance[item] = distance[vertex] + 1
                 parant[item] = vertex
             # if item == end_vertex:
             #     print(used)
@@ -64,6 +108,7 @@ def dfs(start_vertex, graph):
                 _stack.push(item)
         used.add(vertex)
     return distance, parant
+
 
 def dfs_2(v, graph):
     visited = {v}
@@ -80,6 +125,7 @@ def dfs_2(v, graph):
         visited.update(new_verteces)
     return lens
 
+
 def bfs_2(v, graph):
     visited = {v}
     to_explore = [v]
@@ -90,19 +136,18 @@ def bfs_2(v, graph):
         new_verteces = [i for i in graph[u] if i not in visited]
         for i in new_verteces:
             lens[i] = lens[u] + 1
-            
+
         to_explore.extend(new_verteces)
         visited.update(new_verteces)
     return lens
+
 
 graph = createGraph(vert)
 graph_2 = createGraphList(vert)
 # print(dfs(5, 7, graph))
 # print(dfs(1, 7, graph))
 # print(dfs(1, graph_2))
-print(dfs_2(0, graph_3), end='\n\n')
+print(dfs_2(0, graph_3), end="\n\n")
 # print(bfs_2(0, graph_3), end='\n\n')
 
-print(dfs(0, graph_3), end='\n\n')
-
-
+print(dfs(0, graph_3), end="\n\n")

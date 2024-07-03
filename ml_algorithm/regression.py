@@ -11,9 +11,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y)
 
 
 class GD(Enum):
-    FULL = 'full'
-    STOCHASTIC = 'stochastic'
-    MINI_BATCH = 'mini_batch'
+    FULL = "full"
+    STOCHASTIC = "stochastic"
+    MINI_BATCH = "mini_batch"
 
 
 class LenearRegression:
@@ -26,9 +26,9 @@ class LenearRegression:
     def fit(self, X, y, gd=GD.FULL):
         np.random.seed(28)
 
-        if (gd == GD.FULL):
+        if gd == GD.FULL:
             self._fit_gd_full(X, y)
-        elif (gd == GD.MINI_BATCH):
+        elif gd == GD.MINI_BATCH:
             self._fit_mini_batch(X, y)
 
     def predict(self, X):
@@ -39,7 +39,7 @@ class LenearRegression:
         return np.concatenate((np.ones((X.shape[0], 1)), X), axis=1)
 
     def r2(self, predict, y):
-        return 1 - np.sum((predict - y)**2) / np.sum((y.mean() - y)**2)
+        return 1 - np.sum((predict - y) ** 2) / np.sum((y.mean() - y) ** 2)
 
     def _fit_gd_full(self, X, y):
         X = self.add_ones_feature(X)
@@ -55,8 +55,10 @@ class LenearRegression:
             self.score.append(self.r2(predict, y))
 
             # Условие остановки обучения
-            if (len(self.score) > n_features and
-                    self.score[-1] - self.score[-n_features] < self.tolerance):
+            if (
+                len(self.score) > n_features
+                and self.score[-1] - self.score[-n_features] < self.tolerance
+            ):
                 learnign = False
 
     def _fit_mini_batch(self, X, y):
@@ -67,9 +69,7 @@ class LenearRegression:
         learnign = True
         predict = X.dot(self.weights)
         while learnign:
-            indexes = np.random.choice(n_samples,
-                                       int(n_samples * 0.01),
-                                       replace=False)
+            indexes = np.random.choice(n_samples, int(n_samples * 0.01), replace=False)
             predict_batch = X[indexes].dot(self.weights)
             error = predict_batch - y[indexes]
             dw = 2 / n_samples * X[indexes].T.dot(error)
@@ -78,8 +78,10 @@ class LenearRegression:
             self.score.append(self.r2(predict, y))
 
             # Условие остановки обучения
-            if (len(self.score) > n_features and
-                    self.score[-1] - self.score[-n_features] < self.tolerance):
+            if (
+                len(self.score) > n_features
+                and self.score[-1] - self.score[-n_features] < self.tolerance
+            ):
                 learnign = False
 
 
@@ -87,15 +89,15 @@ def full_gd():
     for i in [0.1, 0.05, 0.01]:
         reg = LenearRegression(lr=i)
         reg.fit(X_train, y_train)
-        plt.plot(reg.score, label=f'learning rate {i}')
+        plt.plot(reg.score, label=f"learning rate {i}")
 
         predict = reg.predict(X_test)
-        print(f'r2 при learning rate = {i}', reg.r2(predict, y_test))
+        print(f"r2 при learning rate = {i}", reg.r2(predict, y_test))
 
-    plt.title('The full GD')
+    plt.title("The full GD")
     plt.legend()
-    plt.xlabel('Iterations')
-    plt.ylabel('Score')
+    plt.xlabel("Iterations")
+    plt.ylabel("Score")
     plt.show()
 
 
@@ -103,18 +105,18 @@ def mini_batch_gd():
     for i in [0.1, 0.05, 0.01]:
         reg = LenearRegression(lr=i)
         reg.fit(X_train, y_train, gd=GD.MINI_BATCH)
-        plt.plot(reg.score, label=f'learning rate {i}')
+        plt.plot(reg.score, label=f"learning rate {i}")
 
         predict = reg.predict(X_test)
-        print(f'r2 при learning rate = {i}', reg.r2(predict, y_test))
+        print(f"r2 при learning rate = {i}", reg.r2(predict, y_test))
 
-    plt.title('The mini batch GD')
+    plt.title("The mini batch GD")
     plt.legend()
-    plt.xlabel('Iterations')
-    plt.ylabel('Score')
+    plt.xlabel("Iterations")
+    plt.ylabel("Score")
     plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     full_gd()
     mini_batch_gd()

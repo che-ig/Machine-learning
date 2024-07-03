@@ -1,21 +1,23 @@
 import turtle
 import math
 
+
 def poligon(t, n, length):
     angle = 360 / n
     poliline(t, n, length, angle)
 
+
 def circle(t, r):
     c = 2 * math.pi * r
-    n = int(c / 3) + 1 # количество углов в многоугольнике
+    n = int(c / 3) + 1  # количество углов в многоугольнике
     length = c / n
     poligon(t, n, length)
+
 
 def poliline(t, n, length, angle):
     for i in range(n):
         t.fd(length)
         t.lt(angle)
-
 
 
 bob = turtle.Turtle()

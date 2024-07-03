@@ -4,7 +4,8 @@ from abc import ABC, abstractmethod
 
 
 class Dialog(ABC):
-    '''Базовый класс создателя.'''
+    """Базовый класс создателя."""
+
     def work(self):
         btn = self.create_button()
         btn.render()
@@ -19,61 +20,66 @@ class Dialog(ABC):
 
 class IButton(ABC):
     """Интерфейс продукта. В нашем случае  - кнопки интерфейса."""
+
     @abstractmethod
     def render():
         pass
 
 
 class WindowButton(IButton):
-    '''
-        Конкретный продукт.
-        Субкласс конкретной кнопки под windows
-    '''
+    """
+    Конкретный продукт.
+    Субкласс конкретной кнопки под windows
+    """
+
     def render(self):
-        print('render windows button')
+        print("render windows button")
 
 
 class LinuxButton(IButton):
-    '''
-        Конкретный продукт.
-        Субкласс конкретной кнопки под linux
-    '''
+    """
+    Конкретный продукт.
+    Субкласс конкретной кнопки под linux
+    """
+
     def render(self):
-        print('render lunux button')
+        print("render lunux button")
 
 
 class WindowDailog(Dialog):
-    '''
-        Конкретный фабричный метод.
-        Создает конкретную кнопку под windows
-    '''
+    """
+    Конкретный фабричный метод.
+    Создает конкретную кнопку под windows
+    """
+
     def create_button(self) -> IButton:
         return WindowButton()
 
 
 class LinuxDailog(Dialog):
-    '''
-        Конкретный фабричный метод.
-        Создает конкретную кнопку под linux
-    '''
+    """
+    Конкретный фабричный метод.
+    Создает конкретную кнопку под linux
+    """
+
     def create_button(self) -> IButton:
         return LinuxButton()
 
 
 def client_code(creator):
-    '''
-        Испльзем метод базового класса, не беспокоясь о создании
-        конкретных конкретных кнопок под разные ОС.
-    '''
+    """
+    Испльзем метод базового класса, не беспокоясь о создании
+    конкретных конкретных кнопок под разные ОС.
+    """
     creator.work()
 
 
-if __name__ == '__main__':
-    type_button = input('Ведите win или lunux ')
-    '''
+if __name__ == "__main__":
+    type_button = input("Ведите win или lunux ")
+    """
         Создаем конкретные фабрими для требуемых операционных систем
-    '''
-    if type_button == 'win':
+    """
+    if type_button == "win":
         dialog = WindowDailog()
     else:
         dialog = LinuxDailog()

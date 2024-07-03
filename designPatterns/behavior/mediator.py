@@ -25,7 +25,9 @@ class IMediator(ABC):
 
 
 class ConcreateMediator(IMediator):
-    def __init__(self: ConcreateMediator, comp_a: ComponentA, comp_b: ComponentB) -> None:
+    def __init__(
+        self: ConcreateMediator, comp_a: ComponentA, comp_b: ComponentB
+    ) -> None:
         self._component_a = comp_a
         self._component_a.mediator = self
         self._component_b = comp_b
@@ -38,10 +40,12 @@ class ConcreateMediator(IMediator):
                 self._component_b.operation_b()
 
 
-class BaseComponent():
+class BaseComponent:
     """Базовый класс любого компонента, участвующего в паттерне посредник."""
+
     """ Базовый компонент обеспечивает минимальную функциональность и хранит экземпляр
         медиатора во внутреннем свойстве компонента."""
+
     def __init__(self: BaseComponent, mediator: IMediator = None) -> None:
         self._mediator = mediator
 

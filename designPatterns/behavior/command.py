@@ -24,11 +24,11 @@ class TV:
 
     def on(self: TV) -> None:
         """Метод включения телевизора."""
-        print('Включение телевизора')
+        print("Включение телевизора")
 
     def off(self: TV) -> None:
         """Метод выключения телевизора."""
-        print('Выключение телевизора')
+        print("Выключение телевизора")
 
 
 class VacuumCleaner:
@@ -38,11 +38,11 @@ class VacuumCleaner:
 
     def wash(self: VacuumCleaner) -> None:
         """Метод запускает мытье пола."""
-        print('Моем пол')
+        print("Моем пол")
 
     def clean(self: VacuumCleaner) -> None:
         """Метод запускает чистку пола."""
-        print('Чистим пол')
+        print("Чистим пол")
 
 
 class TvOnCommand(ICommand):
@@ -72,7 +72,7 @@ class WashAndCleanCommand(ICommand):
         self._receiver.clean()
 
 
-class Invoker():
+class Invoker:
     """Класс инициатор."""
 
     """Формирует команды"""
@@ -92,7 +92,7 @@ class Invoker():
         self.vacuum_cleaner.execute()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     invoker = Invoker()
     invoker.turn_on_tv()
     invoker.working_vacuum_cleaner()

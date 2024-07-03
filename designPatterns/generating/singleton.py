@@ -30,7 +30,7 @@ class Singleton(metaclass=SingletonMeta):
         # ...
 
 
-class MySingleton():
+class MySingleton:
     """Класс одиночка без использования метакласов."""
 
     _instance = None
@@ -43,7 +43,7 @@ class MySingleton():
 
     def __init__(self: MySingleton, age: int) -> None:
         """Инициализация экземпляра класса."""
-        if not getattr(MySingleton._instance, 'age', None):
+        if not getattr(MySingleton._instance, "age", None):
             self.age = age
 
 

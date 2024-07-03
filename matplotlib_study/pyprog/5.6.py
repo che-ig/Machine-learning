@@ -14,8 +14,8 @@ y2 = [2, 4, 2, 4, 4, 10]
 fig, ax = plt.subplots()
 
 ax.stackplot(x, [y, y2])
-fig.set(facecolor='floralwhite', figwidth=12, figheight=6)
-ax.set(facecolor='seashell')
+fig.set(facecolor="floralwhite", figwidth=12, figheight=6)
+ax.set(facecolor="seashell")
 
 # Это лишь один пример с pyprog
 

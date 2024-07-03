@@ -10,6 +10,6 @@ vals = np.random.randint(10, size=(7, 7))
 # bbox_to_anchor=(1.01, 0., 1, 1), bbox_transform=ax.transAxes, borderpad=0)
 # plt.colorbar(gr, ticks=[0, 5, 10], cax=axins, label='Value')
 
-plt.pcolor(vals, cmap=plt.get_cmap('viridis', 11))
-plt.colorbar(orientation='horizontal', shrink=0.9, extend='max', label='Value')
+plt.pcolor(vals, cmap=plt.get_cmap("viridis", 11))
+plt.colorbar(orientation="horizontal", shrink=0.9, extend="max", label="Value")
 plt.show()

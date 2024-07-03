@@ -1,19 +1,20 @@
 class Stack:
-    '''
-        Класс Stack
-    '''
+    """
+    Класс Stack
+    """
+
     def __init__(self):
         self.items = []
 
     def isEmpty(self):
         return False if len(self.items) else True
-    
+
     def push(self, object):
         self.items.append(object)
 
     def pop(self):
         return self.items.pop()
-    
+
     def peak(self):
         return self.items[-1]
 
@@ -21,9 +22,8 @@ class Stack:
         return len(self.items)
 
 
-
 def revertWord(s: str):
-    revertWord = ''
+    revertWord = ""
     m = Stack()
     for i in s:
         m.push(i)
@@ -36,10 +36,10 @@ def revertWord(s: str):
 
 def parChecker(s: str):
     stack = Stack()
-    left_brackets = '({['
-    right_brackets = ')}]'
+    left_brackets = "({["
+    right_brackets = ")}]"
 
-    def matches(open, close):       
+    def matches(open, close):
         return left_brackets.index(open) == right_brackets.index(close)
 
     if not isinstance(s, str) or (s and s[0] in right_brackets):
@@ -58,6 +58,7 @@ def parChecker(s: str):
 
     return stack.isEmpty()
 
+
 def divideBy2(decNumber):
     remstack = Stack()
 
@@ -72,9 +73,10 @@ def divideBy2(decNumber):
 
     return binString
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(divideBy2(5))
-    print(revertWord('abc'))
-    strBracket = '((()()))()'
-    print(parChecker('{{([][])}()}'))
+    print(revertWord("abc"))
+    strBracket = "((()()))()"
+    print(parChecker("{{([][])}()}"))
     print(parChecker(strBracket))

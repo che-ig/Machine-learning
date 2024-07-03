@@ -3,9 +3,7 @@ from matplotlib import pyplot as plt
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 
-x, y = datasets.make_classification(n_samples=200,
-                                    n_classes=3,
-                                    n_informative=5)
+x, y = datasets.make_classification(n_samples=200, n_classes=3, n_informative=5)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y)
 
@@ -26,7 +24,7 @@ class KNN:
 
     def find_label(self, test):
         distances = [self.distance(i, test) for i in self.x_train]
-        k_nears = np.argsort(distances)[:self.k]
+        k_nears = np.argsort(distances)[: self.k]
         y_labels = [self.y_train[i] for i in k_nears]
         return self.most_common(y_labels)
 
@@ -36,14 +34,14 @@ class KNN:
         return unique[np.argmax(count)]
 
     def distance(self, train, test):
-        distance = np.sqrt(sum((train - test))**2)
+        distance = np.sqrt(sum((train - test)) ** 2)
         return distance
 
     def score(self, predicted, y):
         return np.sum(predicted == y) / len(y)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_score = []
     for i in range(2, 11):
         clf = KNN(i)
@@ -51,7 +49,7 @@ if __name__ == '__main__':
         pred = clf.predict(x_test)
         test_score.append(clf.score(pred, y_test))
     plt.plot(test_score)
-    plt.ylabel('accuracy')
-    plt.xlabel('k')
+    plt.ylabel("accuracy")
+    plt.xlabel("k")
     plt.show()
     print(test_score)

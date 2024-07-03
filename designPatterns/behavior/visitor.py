@@ -7,11 +7,12 @@ from abc import ABC, abstractmethod
 
 class IVistor(ABC):
     """
-        Интерфейс посетителя (Visitor).
-        Объявляет набор методов, соответстующих классам компонентов.
-        Сигнатура метода посещения позволяет посетителю
-        понять конкретный класс компонента, с которым он имеет дело.
+    Интерфейс посетителя (Visitor).
+    Объявляет набор методов, соответстующих классам компонентов.
+    Сигнатура метода посещения позволяет посетителю
+    понять конкретный класс компонента, с которым он имеет дело.
     """
+
     @abstractmethod
     def visit_for_concrete_component_a(self, component: ConcreteComponentA):
         pass
@@ -23,9 +24,10 @@ class IVistor(ABC):
 
 class IComponent(ABC):
     """
-        Интерфейс компонента.
-        Объявляет метод accept, принимающий объект типа IVistor.
+    Интерфейс компонента.
+    Объявляет метод accept, принимающий объект типа IVistor.
     """
+
     @abstractmethod
     def accept(self, visitor: IVistor):
         pass
@@ -43,8 +45,8 @@ class ConcreteComponentA(IComponent):
 
     def accept(self, visitor: IVistor):
         """
-            Конкретный компонент должен знать какой метод посетиля необходимо вызвать,
-            чтобы он подходил под текущий тип компонента.
+        Конкретный компонент должен знать какой метод посетиля необходимо вызвать,
+        чтобы он подходил под текущий тип компонента.
         """
         visitor.visit_for_concrete_component_a(self)
 
@@ -108,4 +110,3 @@ if __name__ == "__main__":
     for vis in visitors:
         for comp in componetns:
             comp.accept(vis)
-
