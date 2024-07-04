@@ -102,7 +102,7 @@ def dfs(start_vertex, graph):
             # if item == end_vertex:
             #     print(used)
             #     return distance[end_vertex]
-            if not item in used:
+            if item not in used:
                 # print(item)
                 used.add(item)
                 _stack.push(item)

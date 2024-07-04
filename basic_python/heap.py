@@ -28,19 +28,6 @@ class Heap:
         while i < n:
             index_left_child = 2 * i + 1
             index_right_child = 2 * i + 2
-            # if index_right_child <= (n - 1) and (self._heap[i] > self._heap[index_left_child] or self._heap[i] > self._heap[index_right_child]):
-            #     if self._heap[index_left_child] < self._heap[index_right_child]:
-            #         self._heap[i], self._heap[index_left_child] = self._heap[index_left_child], self._heap[i]
-            #         i = index_left_child
-            #     else:
-            #         self._heap[i], self._heap[index_right_child] = self._heap[index_right_child], self._heap[i]
-            #         i = index_right_child
-            # elif index_left_child <= (n - 1) and self._heap[i] > self._heap[index_left_child]:
-            #     self._heap[i], self._heap[i] = self._heap[index_left_child], self._heap[i]
-            #     i = index_left_child
-            # else:
-            #     break
-
             # Пока не дошли до конца кучи (n - 1) и левый ребенок меньше родителя, то продолжаем спуск
             if index_left_child <= (n - 1) and self._heap[i] > self._heap[index_left_child]:
                 self._heap[i], self._heap[index_left_child] = (
