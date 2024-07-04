@@ -1,7 +1,7 @@
 import numpy as np
+from matplotlib import pyplot as plt
 from sklearn.datasets import make_moons
 from sklearn.preprocessing import MinMaxScaler
-from matplotlib import pyplot as plt
 
 np.random.seed(42)
 test_moon_data = make_moons(n_samples=100, noise=0.05)

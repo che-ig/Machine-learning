@@ -73,9 +73,7 @@ class KMeans:
 
     def assign_clusters(self: KMeans):
         """Присваиваем метки данным, согласно их близости к центроидам."""
-        return np.array(
-            [np.argmin(np.linalg.norm(x - self.centroids, axis=1)) for x in self.X]
-        )
+        return np.array([np.argmin(np.linalg.norm(x - self.centroids, axis=1)) for x in self.X])
 
     def evaluate(self: KMeans) -> float:
         """Высчитываем сумму расстояний от центроида до его меток."""
@@ -83,9 +81,7 @@ class KMeans:
         sum_distance_in_centroid = 0
         for k in range(self.k):
             cluster = self.X[cluster_assignment == k]
-            sum_distance_in_centroid += np.sum(
-                np.linalg.norm(self.centroids[k] - cluster, axis=1)
-            )
+            sum_distance_in_centroid += np.sum(np.linalg.norm(self.centroids[k] - cluster, axis=1))
         return sum_distance_in_centroid
 
     def move_centroids(self: KMeans, clusters_assignment):
@@ -131,18 +127,14 @@ class KMeans:
         self.centroids = np.array(centroids)
 
     def pplot(self, data, centroids):
-        plt.scatter(
-            data[:, 0], data[:, 1], marker=".", color="gray", label="data points"
-        )
+        plt.scatter(data[:, 0], data[:, 1], marker=".", color="gray", label="data points")
         plt.scatter(
             centroids[:-1, 0],
             centroids[:-1, 1],
             color="black",
             label="previously selected centroids",
         )
-        plt.scatter(
-            centroids[-1, 0], centroids[-1, 1], color="red", label="next centroid"
-        )
+        plt.scatter(centroids[-1, 0], centroids[-1, 1], color="red", label="next centroid")
         plt.title("Select % d th centroid" % (centroids.shape[0]))
 
         plt.legend()
@@ -177,7 +169,5 @@ if __name__ == "__main__":
     # Выводим итоговый график с размеченными данными.
     plt.figure(figsize=(8, 8))
     plt.scatter(kmeans.X[:, 0], kmeans.X[:, 1], c=kmeans.assign_clusters())
-    plt.scatter(
-        kmeans.centroids[:, 0], kmeans.centroids[:, 1], c="r", s=150, marker="*"
-    )
+    plt.scatter(kmeans.centroids[:, 0], kmeans.centroids[:, 1], c="r", s=150, marker="*")
     plt.show()

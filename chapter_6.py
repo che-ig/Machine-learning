@@ -3,9 +3,7 @@ import numpy as np
 weights = np.array([0.5, 0.48, -0.7])
 alpha = 0.1
 
-streetlights = np.array(
-    [[1, 0, 1], [0, 1, 1], [0, 0, 1], [1, 1, 1], [0, 1, 1], [1, 0, 1]]
-)
+streetlights = np.array([[1, 0, 1], [0, 1, 1], [0, 0, 1], [1, 1, 1], [0, 1, 1], [1, 0, 1]])
 
 walk_vs_stop = np.array([0, 1, 0, 1, 1, 0])
 

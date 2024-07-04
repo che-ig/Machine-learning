@@ -51,9 +51,7 @@ class SoftMaxRegression:
         # Рекомендуется из набора данных вычесть макс. зн.
         # для устойчивости решения.
         modif_sum_k = sum_k - np.max(sum_k)
-        softmax = np.exp(modif_sum_k) / np.sum(np.exp(modif_sum_k), axis=1).reshape(
-            -1, 1
-        )
+        softmax = np.exp(modif_sum_k) / np.sum(np.exp(modif_sum_k), axis=1).reshape(-1, 1)
         return softmax
 
     def fit(self: SoftMaxRegression, X, y) -> None:

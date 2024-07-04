@@ -27,9 +27,7 @@ ax2[0].set_title(
     pad=0,
 )  # Задает расстояние в точках.
 
-ax2[1].set_title(
-    'loc ="center", pad = 10', loc="center", pad=10  # Значение по умолчанию
-)
+ax2[1].set_title('loc ="center", pad = 10', loc="center", pad=10)  # Значение по умолчанию
 
 ax2[2].set_title('loc = "right", pad = 20', loc="right", pad=20)
 

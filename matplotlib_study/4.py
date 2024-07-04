@@ -1,6 +1,5 @@
-import numpy as np
-
 import matplotlib.colors as mcolors
+import numpy as np
 from matplotlib import pyplot as plt
 
 bc = mcolors.BASE_COLORS

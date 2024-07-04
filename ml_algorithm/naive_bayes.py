@@ -36,9 +36,7 @@ def write_file(file_path: Path, result_file: Path, message_type: str) -> None:
             if line.startswith("Subject:"):
                 # Удалим начальное слово Subject: и
                 # возьмем все остальное
-                subject = (
-                    re.sub("(^Subject\:)?([rR]e\:)?(\[.*\])?", "", line).lower().strip()
-                )
+                subject = re.sub("(^Subject\:)?([rR]e\:)?(\[.*\])?", "", line).lower().strip()
                 if not result_file.exists():
                     result_file.touch()
 
@@ -64,9 +62,7 @@ class MessageType(Enum):
 class NaiveBayesClassifier:
     """Класс, реализующий алгоритм наивного Байеса."""
 
-    def __init__(
-        self: NaiveBayesClassifier, *, data_source: Path, coef: float = 0.5
-    ) -> None:
+    def __init__(self: NaiveBayesClassifier, *, data_source: Path, coef: float = 0.5) -> None:
         """Конструктор класса."""
         # Константа сглаживания.
         self.coef = coef
@@ -148,8 +144,7 @@ class NaiveBayesClassifier:
         return {
             word: {
                 "prob_spam": (self.coef + spam) / (2 * self.coef + total_spams),
-                "prob_not_spam": (self.coef + not_spam)
-                / (2 * self.coef + total_non_spams),
+                "prob_not_spam": (self.coef + not_spam) / (2 * self.coef + total_non_spams),
             }
             for word, (spam, not_spam) in counts.items()
         }
@@ -160,9 +155,7 @@ class NaiveBayesClassifier:
 
         # Пропустим обучающую выборку через метод подсчета слов.
         word_counts = self.count_words()
-        self.word_probs = self.word_probabilities(
-            word_counts, spam_count, not_spam_count
-        )
+        self.word_probs = self.word_probabilities(word_counts, spam_count, not_spam_count)
 
     def classify(self: NaiveBayesClassifier, message: str) -> MessageProb:
         """Возвращаем вероятности спама и неспама."""

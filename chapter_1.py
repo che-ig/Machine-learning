@@ -16,9 +16,7 @@ ih_wgt = np.array(
 )  # hid[2]
 
 # hid[0] hid[1] hid[2]
-hp_wgt = np.array(
-    [[0.3, 1.1, -0.3], [0.1, 0.2, 0.0], [0.0, 1.3, 0.1]]  # hurt?  # win?
-)  # sad?
+hp_wgt = np.array([[0.3, 1.1, -0.3], [0.1, 0.2, 0.0], [0.0, 1.3, 0.1]])  # hurt?  # win?  # sad?
 
 weights = [ih_wgt, hp_wgt]
 

@@ -1,5 +1,5 @@
-import turtle
 import math
+import turtle
 
 
 def poligon(t, n, length):

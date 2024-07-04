@@ -46,8 +46,6 @@ ax[1].text(
     fontsize=20,
 )
 
-ax[1].text(
-    0.7, 0.5, "Мой первый текст", bbox=box_3, color="white", fontsize=20  # Цвет текста
-)
+ax[1].text(0.7, 0.5, "Мой первый текст", bbox=box_3, color="white", fontsize=20)  # Цвет текста
 
 plt.show()

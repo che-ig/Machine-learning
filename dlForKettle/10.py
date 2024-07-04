@@ -1,5 +1,5 @@
-import string
 import os
+import string
 
 s = "aaa, bbb # 888"
 

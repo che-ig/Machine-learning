@@ -1,10 +1,12 @@
-import numpy as np
+import inspect
 import math
-import matplotlib.pyplot as plt
-from sklearn.datasets import make_blobs
-from sklearn.cluster import KMeans
+import os
+import sys
 
-import os, sys, inspect
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
 
 np.random.seed(42)
 xy = []

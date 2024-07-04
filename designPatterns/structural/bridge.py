@@ -44,9 +44,7 @@ class Abstraction:
         self._implementation = implementation
 
     def operation(self):
-        print(
-            f"{self.__class__.__name__} {self._implementation.operation_implementation()}"
-        )
+        print(f"{self.__class__.__name__} {self._implementation.operation_implementation()}")
 
 
 class ExtendedAbstraction(Abstraction):
@@ -55,9 +53,7 @@ class ExtendedAbstraction(Abstraction):
     """
 
     def operation(self):
-        print(
-            f"{self.__class__.__name__} {self._implementation.operation_implementation()}"
-        )
+        print(f"{self.__class__.__name__} {self._implementation.operation_implementation()}")
 
 
 def client_code(abstraction: Abstraction):

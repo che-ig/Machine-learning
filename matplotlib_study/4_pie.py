@@ -4,9 +4,7 @@ from matplotlib import pyplot as plt
 vals = [24, 17, 53, 21, 35]
 labels = ["Ford", "Toyota", "BMW", "AUDI", "Jaguar"]
 fig, ax = plt.subplots(1, 2, figsize=(9, 9))
-ax[0].pie(
-    vals, labels=labels, autopct="%1.1f%%", radius=1.5, explode=(0.1, 0, 0.15, 0, 0)
-)
+ax[0].pie(vals, labels=labels, autopct="%1.1f%%", radius=1.5, explode=(0.1, 0, 0.15, 0, 0))
 ax[0].axis("equal")
 
 data = np.array([[5, 10, 7], [8, 15, 5], [11, 9, 7]])

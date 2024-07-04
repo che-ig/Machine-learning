@@ -1,8 +1,9 @@
-from __future__ import print_function, division
+from __future__ import division, print_function
+
 import os
-import sys
-import string
 import random
+import string
+import sys
 
 # global variables
 suffix_map = {}  # map from prefixes to a list of suffixes

@@ -21,9 +21,7 @@ class PizzaItem:
 class PizzaSliceIterator(Iterator):
     """Класс итератор."""
 
-    def __init__(
-        self: PizzaSliceIterator, pizza: List[PizzaItem], reverse: bool = False
-    ) -> None:
+    def __init__(self: PizzaSliceIterator, pizza: List[PizzaItem], reverse: bool = False) -> None:
         """Инициализируем итератор."""
         self._pizza = pizza
         self._index: int = -1 if reverse else 0

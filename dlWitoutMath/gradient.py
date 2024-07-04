@@ -37,9 +37,7 @@ def surf():
     plt.show()
 
 
-def min_value_on_interval(
-    function: callable, value: float, error: float = 0.01
-) -> float:
+def min_value_on_interval(function: callable, value: float, error: float = 0.01) -> float:
     derivative_fun = 1
     last_value = value
     step = 0.0001

@@ -120,12 +120,8 @@ ax_7[3].bar(
 )  # начертание линии
 
 ax_7[0].set(title="Одинаковая погрешность", facecolor="seashell", xticks=[])
-ax_7[1].set(
-    title="Разная, но симметричная погрешность", facecolor="seashell", xticks=[]
-)
-ax_7[2].set(
-    title="Максимальная и минимальная погрешность", facecolor="seashell", xticks=[]
-)
+ax_7[1].set(title="Разная, но симметричная погрешность", facecolor="seashell", xticks=[])
+ax_7[2].set(title="Максимальная и минимальная погрешность", facecolor="seashell", xticks=[])
 ax_7[3].set(title="Максимум настроек", facecolor="seashell", xticks=[])
 
 fig_7.set(facecolor="floralwhite", figwidth=12, figheight=12)

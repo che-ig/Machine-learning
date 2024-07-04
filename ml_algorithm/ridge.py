@@ -14,9 +14,7 @@ Errors = namedtuple("Errors", ["mse", "r"])
 
 
 class Ridge:
-    def __init__(
-        self, reg_coef, lr=0.1, epoch=200, log_interval=200, print_log_loss=None
-    ):
+    def __init__(self, reg_coef, lr=0.1, epoch=200, log_interval=200, print_log_loss=None):
         self.lr = lr
         self.epoch = epoch
         self.weights = []

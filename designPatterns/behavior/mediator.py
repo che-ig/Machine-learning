@@ -25,9 +25,7 @@ class IMediator(ABC):
 
 
 class ConcreateMediator(IMediator):
-    def __init__(
-        self: ConcreateMediator, comp_a: ComponentA, comp_b: ComponentB
-    ) -> None:
+    def __init__(self: ConcreateMediator, comp_a: ComponentA, comp_b: ComponentB) -> None:
         self._component_a = comp_a
         self._component_a.mediator = self
         self._component_b = comp_b

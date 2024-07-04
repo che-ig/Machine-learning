@@ -1,6 +1,6 @@
-from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
 import numpy as np
+from matplotlib import pyplot as plt
 
 x = np.arange(1, 25, 5)
 x[1:] = x[1:] - 1
