@@ -11,16 +11,24 @@ poetry add -D jupyterlab
   5. Жмем на кнопку с отображением текущего имени окружения и выбираем из списка то которое создали.![[jplab_5.png]]
 
 ##### Существует еще один вариант создания свое ядра для jupyter.
-**Данный вариант у меня, почему-то, не получился.(но его следует пробовать)**
+
 Для этого нужно добавить еще одну dev зависимость в poetry.
 ```bash
 poetry add -D ipykernel
 ```
 и выполнить команду
 ```bash
-poetry run python -m ipykernel install --user --name my-kernel
+poetry run python -m ipykernel install --user --name che-project
 ```
-После этого при создании нового таба должно отображаться созданное ядро.![[jplab_6.png]]
+После это при <u>запуске jupyter lab через poetry</u> мы сможем выбирать нужное нам ядро (если отрывать jupyter lab не через poetry, то ничего работать не будет)
+```bash
+poetry run jupyter lab
+```
 
-Полезные ссылки:
+**У нас откроется jupyter lab в браузере.** После этого при создании нового таба должно отображаться созданное ядро![[jplab_6.png]]
+
+Можно изменить ядро в уже отрытом файле.![[jplab_7.png]]
+
+
+#### Полезные ссылки:
 https://www.alexanderjunge.net/blog/pyenv-virtualenv-poetry-jupyter/
