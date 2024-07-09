@@ -15,7 +15,7 @@ def circle(t, r):
 
 
 def poliline(t, n, length, angle):
-    for i in range(n):
+    for _ in range(n):
         t.fd(length)
         t.lt(angle)
 

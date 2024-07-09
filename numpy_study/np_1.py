@@ -1,5 +1,4 @@
 import numpy as np
-import scipy
 
 simple_array = np.array([1, 8, 2, 4])
 array_example = np.array([[5, 5], [6, 6], [7, 7]])
@@ -12,6 +11,7 @@ e = np.empty(2)
 
 # создание массива диапозона от нуля до требуемого значения
 r = np.arange(4)
+
 print(np.sort(simple_array))
 print(np.concatenate((e, simple_array)))
 print(z, o, e)
