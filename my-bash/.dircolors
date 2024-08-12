@@ -31,6 +31,8 @@ TERM terminator
 TERM tmux*
 TERM vt100
 TERM xterm*
+TERM xterm-256color
+
 # Below are the color init strings for the basic file types.
 # One can use codes for 256 or more colors supported by modern terminals.
 # The default color codes use the capabilities of an 8 color terminal
@@ -195,3 +197,11 @@ EXEC 38;5;87  # 01;32
 .xspf 00;36
 # reader formats
 .pdf 38;5;84
+# text formats
+.txt 38;05;226;1
+.csv 38;05;44;1 # .csv 38;05;231;48;05;25
+.py 38;05;117;1
+.md 38;05;186
+.ipynb 38;05;115;1
+.html 38;05;39;1
+.json 38;05;192;1
