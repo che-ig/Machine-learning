@@ -29,6 +29,14 @@ poetry run jupyter lab
 
 Можно изменить ядро в уже отрытом файле.![[jplab_7.png]]
 
+#### Настройка debug
+В папке где активировано виртуальное окружение python (т.е где вызываем команду poetry shell) вызываем команду ([источник](https://ipython.readthedocs.io/en/stable/config/intro.html))
+ ```
+ ipython profile create
+```
+Я не указываю имени профиля, поэтому конфиги будут созданы в дефолтной папке по пути `~/.ipython/profile_default/`.
+Мы открываем файл `ipython_kernel_config.py` и в конец файла вносим строку 
+`c.Kernel.debug_just_my_code=False` - этим мы говорим, что хотим отлаживать не только наш код, но код сторонних модулей.
 
 #### Полезные ссылки:
 https://www.alexanderjunge.net/blog/pyenv-virtualenv-poetry-jupyter/

@@ -23,6 +23,7 @@ beautifulsoup4 = "^4.12.3"
 tables = "^3.9.2"
 h5py = "^3.11.0"
 numpy = "1.26.4"
+pandas-datareader = "^0.10.0"
 
 [tool.black]
 line-length = 100
