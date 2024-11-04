@@ -5,7 +5,7 @@
 
 Команды Pipx для установки, обновления и удаления инструмента:
 
-```python
+```bash
 pipx install poetry
 pipx upgrade poetry
 pipx uninstall poetry
@@ -16,7 +16,7 @@ pipx uninstall poetry
 ## Работа с Poetry
 Для начала убедимся, что Poetry корректно установлен, введя в терминал команду:
 
-```python
+```bash
 poetry --version
 ```
 
@@ -24,7 +24,7 @@ poetry --version
 
 **Для существующего  проекта** инициализировать Poetry можно через выполнение команды:
 
-```python
+```bash
 poetry init
 ```
 Будут заданы некоторые вопросы по конфигурированию прокета, после чего появится файл  Pyproject.toml ![[poetry_1.png]]
@@ -125,6 +125,6 @@ skip_gitignore = true
 	- `poetry env use 3.12.4`  - указываем poetry с каким окружением работать (где 3.12.4 это наше окружение), которое было установлено при помощи pyenv (см. заметку [[Установка pyenv]]).
 1. Добавляем необходимые зависимости, (**в нашем случае этого делать не надо т.к в проекте уже существуют файлы pyproject.toml и poetry.lock** )  например,
 	- `poetry add pandas numpy` - таким образом добавляются обычные зависимости 
-	- `poetry add -D flake8 mypy back` - таким образом добавляются dev зависимости
+	- `poetry add -D flake8 mypy black` - таким образом добавляются dev зависимости
 2. активируем окружение `poetry shell`
 3. отключаем окружение командой `exit`

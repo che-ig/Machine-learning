@@ -14,7 +14,7 @@ libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-d
 > ![[pyenv_bug_install.png]]
 > то необходимо прописать ряд строк, указанных ниже, в файл `.bashrc`. 
 > Необходимо добавить pyenv в PATH ([источник кода](https://github.com/pyenv/pyenv-installer))
-```
+```bash
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
@@ -41,7 +41,7 @@ pyenv local my-virtual-env-3.12.4
 ##### Полезные команды:
 [Официальный источник](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-local) с описанием всех команд
 - `pyenv version` - просмотр текущего окружения python
-- `pyenv versins` - просмотр всех имеющихся окружений
+- `pyenv versions` - просмотр всех имеющихся окружений
 - `pyenv uninstall my-virtual-env` - удаление требуемого окружения
 - `pyenv install --list`  - Узнать все доступные версии Python
 
