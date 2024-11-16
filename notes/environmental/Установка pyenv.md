@@ -11,7 +11,7 @@ libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-d
 
 > [!attention] Возможная проблема при установке
 > Если мы наблюдаем подобную проблему.
-> ![](pyenv_bug_install.png)
+> ![](../images/pyenv_bug_install.png)
 > то необходимо прописать ряд строк, указанных ниже, в файл `.bashrc`. 
 > Необходимо добавить pyenv в PATH ([источник кода](https://github.com/pyenv/pyenv-installer))
 ```bash
