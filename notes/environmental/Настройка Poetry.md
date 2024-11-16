@@ -27,7 +27,7 @@ poetry --version
 ```bash
 poetry init
 ```
-Будут заданы некоторые вопросы по конфигурированию прокета, после чего появится файл  Pyproject.toml ![[poetry_1.png]]
+Будут заданы некоторые вопросы по конфигурированию прокета, после чего появится файл  Pyproject.toml ![[images/poetry_1.png]]
 
 ### pyproject.toml
 

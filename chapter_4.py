@@ -21,6 +21,7 @@ for iteration in range(4):
 weight, goal_pred, input = (0.5, 0.8, 2)
 alpha = 0.1
 
+
 for iteration in range(20):
     print("-----\nWeight:" + str(weight))
     pred = input * weight
