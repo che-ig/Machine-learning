@@ -9,3 +9,7 @@ make all test
 ```bash
  sudo make install
 ```
+3. Установить менеджер пакетов 
+```bash
+sudo apt-get -y install luarocks
+```
