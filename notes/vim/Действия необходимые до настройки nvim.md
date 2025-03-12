@@ -9,7 +9,11 @@
 	```bash		
 	sudo apt-get -y install cmake
 	```
-	7. Установить `ripgrep` - утилита для поиска по строкам (понадобится для плагина Telescope)
+	7. Установить `ripgrep` - утилита для поиска по строкам и `fd-find`  - утилита для поиска файлов - замена стандартного find (обе утилиты понадобятся для плагина Telescope)
 	```bash
 	sudo apt install ripgrep
+	```
+	```bash
+	sudo apt install fd-find
+	ln -s $(which fdfind) ~/.local/bin/fd
 	```
