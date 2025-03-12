@@ -17,4 +17,5 @@
 	sudo apt install fd-find
 	ln -s $(which fdfind) ~/.local/bin/fd
 	```
-[заметка](<../linux/Управление версиями Node.js и NPM с помощью NVM>)
+[заметка](<../linux/Управление версиями Node.js и NPM с помощью NVM.md>)
+
