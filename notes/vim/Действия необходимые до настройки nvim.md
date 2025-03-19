@@ -18,3 +18,7 @@
 	sudo apt install fd-find
 	ln -s $(which fdfind) ~/.local/bin/fd
 	```
+8. Установить `ctags`
+```bash
+sudo apt-get -y install universal-ctags
+```
