@@ -23,7 +23,8 @@ echo 'kitty.desktop' > ~/.config/xdg-terminals.list
 ```bash
 echo 'set completion-ignore-case On' >> ~/.inputrc
 ````
-
+4. Конфиг и цветовая схема для kitty уже настроены и лежат в корне проекта в папке `kitty`. Содержимое папки нужно скопировать и вставить в папку
+`~/.config/kitty`
 
 
 Источники:
