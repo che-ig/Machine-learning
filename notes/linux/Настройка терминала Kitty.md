@@ -25,8 +25,10 @@ echo 'set completion-ignore-case On' >> ~/.inputrc
 ````
 4. Конфиг и цветовая схема для kitty уже настроены и лежат в корне проекта в папке `kitty`. Содержимое папки нужно скопировать и вставить в папку
 `~/.config/kitty`
-
-
+5. Для корректного отображения цветовой схемы необходимо проверить строку `xterm-color|*-256color) color_prompt=yes;;` в файле `~/.bashrc`
+и добавить в нее `xterm-kitty` чтобы получилось
+`xterm-color|*-256color|xterm-kitty) color_prompt=yes;;`
+`
 Источники:
 - https://sw.kovidgoyal.net/kitty/binary/
 - https://askubuntu.com/questions/87061/can-i-make-tab-auto-completion-case-insensitive-in-bash
