@@ -1,4 +1,4 @@
-# Git
+# Vim
 ---
 -  [100 команд vim, которые должен знать каждый ](https://scabere.livejournal.com/62886.html)
 ```embed
@@ -20,6 +20,14 @@ image: "media/favicon-fbf6df34.ico"
 description: ""
 url: "https://stackoverflow.com/questions/2902048/vim-save-a-list-of-open-files-and-later-open-all-files"
 ```
+- [Vi и vim: Быстрые клавиши и комбинации клавиш редактора vim](https://codedepth.wordpress.com/2017/08/23/vi-vim-hotkeys/)
+```embed
+title: "Vi и vim: Быстрые клавиши и комбинации клавиш редактора vim"
+image: "media/vim-editor-logo-29aa2ce7.png"
+description: "Памятка по комбинациям клавиш в редакторе vim"
+url: "https://codedepth.wordpress.com/2017/08/23/vi-vim-hotkeys/"
+```
+
 # Sed
 ---
  - [50 практических примеров использования команды SED в Linux](https://ru.linux-terminal.com/?p=472)
@@ -28,4 +36,11 @@ title: "50 практических примеров использования 
 image: "media/Practical-Examples-of-The-SED-Command-in-Linux-c938ce9a.jpg"
 description: ""
 url: "https://ru.linux-terminal.com/?p=472"
+```
+- [Краткий учебник по sed](https://emulek.github.io/sed/index.html)
+```embed
+title: "Краткий учебник по sed."
+image: "media/image-1ed6e2dd.png"
+description: "Важное замечание. Обычно связано с опасностью потери данных, порче компьютера, нового 37го, наступления конца света, и прочего."
+url: "https://emulek.github.io/sed/index.html"
 ```
