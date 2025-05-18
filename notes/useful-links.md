@@ -44,3 +44,11 @@ image: "media/image-1ed6e2dd.png"
 description: "Важное замечание. Обычно связано с опасностью потери данных, порче компьютера, нового 37го, наступления конца света, и прочего."
 url: "https://emulek.github.io/sed/index.html"
 ```
+# Ripgrep
+[Ripgrep — рекурсивный поиск в текущем каталоге шаблона регулярного выражения](https://redos.red-soft.ru/base/redos-7_3/7_3-users-tasks/7_3-files/7_3-ripgrep/)
+```embed
+title: "Ripgrep — рекурсивный поиск в текущем каталоге шаблона регулярного выражения - База знаний РЕД ОС"
+image: "media/logo-795d10e9.svg"
+description: "Установка Синтаксис Опции Позиционные аргументы Примеры использования"
+url: "https://redos.red-soft.ru/base/redos-7_3/7_3-users-tasks/7_3-files/7_3-ripgrep/"
+```
