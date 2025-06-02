@@ -1,5 +1,5 @@
 [project]
-name = "poetry_temp"
+name = "ml_project"
 version = "0.1.0"
 description = ""
 authors = [{ name = "chernov.ig", email = "che_test@test" }]
@@ -45,6 +45,9 @@ dev = [
     "flake8-cognitive-complexity>=0.1.0,<0.2",
     "flake8-annotations>=3.1.1,<4",
     "flake8-docstrings>=1.7.0,<2",
+    # необходим для корректной работы matplotlib в visualstudio
+    # под uv (менеджер пакетов для python)
+    "pyqt5>=5.15.11",
 ]
 
 [tool.uv]
