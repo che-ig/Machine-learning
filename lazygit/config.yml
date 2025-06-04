@@ -10,8 +10,9 @@ gui:
   expandedSidePanelWeight: 4
   # Length of author name in (non-expanded) commits view. 2 means show initials only.
   commitAuthorShortLength: 3
-  # os:
-  #   editPreset: "nvim"
+  os:
+    #To tell lazygit which editor to use for the e command
+    editPresent: "nvim"
   authorColors:
     # use red for John Smith
     "chernov.ig": "cyan"
