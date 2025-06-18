@@ -1,0 +1,36 @@
+[mrg]
+ratio = [2,3,5]
+
+[opener]
+play = [
+	{ run = '/home/che/git/Machine-learning/celluloid_size.bash "$@"', orphan = true, for = "linux" }
+]
+
+# name: Glob expression for matching the file name. Case-insensitive by default, add \s to the beginning to make it sensitive.
+# mime: Glob expression for matching the mime-type. Case-insensitive by default, add \s to the beginning to make it sensitive.
+# use: Opener name corresponding to the names in the [opener] section.
+
+# если использовать такой стиль https://yazi-rs.github.io/docs/configuration/yazi#open
+# тогда при вызове интерактивоного режима (O) помимо проигрывателя будут доступны другие опции
+[open]
+prepend_rules = [
+	# Multiple openers for a single rule
+	{ name = "*.mp4", use = [ "play" ] },
+	{ name = "*.mkv", use = [ "play" ] },
+	{ name = "*.avi", use = [ "play" ] },
+	{ name = "*.wmv", use = [ "play" ] },
+]
+
+# https://github.com/boydaihungst/mediainfo.yazi
+[plugin]
+  prepend_preloaders = [
+    # Replace magick, image, video with mediainfo
+    { mime = "{audio,video,image}/*", run = "mediainfo" },
+    { mime = "application/subrip", run = "mediainfo" },
+  ]
+  prepend_previewers = [
+    # Replace magick, image, video with mediainfo
+    { mime = "{audio,video,image}/*", run = "mediainfo"},
+    { mime = "application/subrip", run = "mediainfo" },
+  ]
+

@@ -1,0 +1,15 @@
+[mgr]
+prepend_keymap = [
+    # https://github.com/dedukun/bookmarks.yazi
+    { on = [ "m" ], run = "plugin bookmarks save", desc = "Save current position as a bookmark"},
+    { on = [ "'" ], run = "plugin bookmarks jump", desc = "Jump to a bookmark"},
+    { on = [ "b", "d" ], run = "plugin bookmarks delete", desc = "Delete a bookmark"},
+    { on = [ "b", "D" ], run = "plugin bookmarks delete_all", desc = "Delete all bookmarks"},
+
+    # https://github.com/Lil-Dank/lazygit.yazi
+    { on   = [ "g", "i" ], run  = "plugin lazygit", desc = "run lazygit"},
+
+    # https://github.com/orhnk/system-clipboard.yazi
+    { on = "<C-y>", run = ["plugin system-clipboard"], desc = "Copy To system Clipboard"},
+    { on = "<C-p>", run = "shell 'cb paste' --block", desc = "Paste from clipboard"}
+]
