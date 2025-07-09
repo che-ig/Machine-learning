@@ -1,0 +1,14 @@
+# ln -s -f -d /home/stepan/git_repos/kn7072/polybar/ /home/stepan/.config/
+1. 
+ln -sfd /home/che/git/Machine-learning/tile_manager/polybar /home/che/.config/
+
+2.
+Скрипты для полибара находятся в репозитории https://github.com/polybar/polybar-scripts.git.
+В конфиге уже указан путь, где искать скрипты, поэтому клонируем именно в этот каталог.
+cd ~/external_repos
+git clone https://github.com/polybar/polybar-scripts.git
+
+3.
+# для работы popup-powermenu (который используется внутри конфига polybar) необходимо
+# установить yad
+sudo apt install yad

@@ -1,0 +1,2 @@
+# ln -s -f -d /home/stepan/git_repos/kn7072/sxhkd/ /home/stepan/.config/
+ln -sfd /home/che/git/Machine-learning/tile_manager/sxhkd /home/che/.config/
