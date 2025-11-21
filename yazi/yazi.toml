@@ -3,8 +3,8 @@ ratio = [1, 2, 4]
 
 [opener]
 play = [
-	{ run = '/home/che/git/Machine-learning/celluloid_size.bash "$@"', orphan = true, for = "linux" },
-	{ run = '/home/che/git/Machine-learning/vlc_size.bash "$@"', orphan = true, for = "linux" }
+	{ run = '/home/che/git/Machine-learning/celluloid_size.bash "$@"', orphan = true, for = "linux", desc = "play to celluloid" },
+	{ run = '/home/che/git/Machine-learning/vlc_size.bash "$@"', orphan = true, for = "linux", desc = "play to vlc" }
 ]
 
 [preview]
@@ -36,7 +36,7 @@ prepend_rules = [
   ]
   prepend_previewers = [
     # Replace magick, image, video with mediainfo
-    { mime = "{audio,video,image}/*", run = "mediainfo"},
+    { mime = "{audio,video,image}/*", run = "mediainfo" },
     { mime = "application/subrip", run = "mediainfo" },
   ]
 
