@@ -25,5 +25,8 @@ gui:
 
     # Border color of focused window
     activeBorderColor:
-      - blue
+      - "#fa8ce2"
       - bold
+
+    inactiveBorderColor:
+      - green
