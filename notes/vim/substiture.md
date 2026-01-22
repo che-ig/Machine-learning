@@ -280,23 +280,22 @@ First, set your Vi(m) session to allow pattern matching with special characters 
 
 Next, do:
 
-:s/,/,^M/g
+`:s/,/,^M/g`
 
-To get the ^M character, type Ctrl + V and hit Enter.
+**To get the ^M character, type Ctrl + V and hit Enter.**
 
-:'<,'>s#xxxx#^M/g
+`:'<,'>s#xxxx#^M/g`
 
+```
 :'<,'>s/[`|-]//g | '<,'>s/<br>/^M/g
+```
 
-'<,'>s/\v([\[\]])//g удалить скобки [,]
+`'<,'>s/\v([\[\]])//g   удалить скобки [,]`
 
-создать несколько строк из одной
-текущая строка - wonder about/at
-необходимо создать две
-wonder about
-wonder at
+создать несколько строк из одной текущая строка - wonder about/at
+необходимо создать две wonder about wonder at
 
-%s/\v(._) (._)\/(.\*)/\1 \2^M\1 \3
+`%s/\v(._) (._)\/(.\*)/\1 \2^M\1 \3`
 
 If you have the following expressions:
 const arrayB = [
@@ -322,7 +321,8 @@ const arrayA = [
 ]
 
 If you need to sort the elements inside the arrays, but not the arrays themselves, you can run this:
-:g/\[/+1,/\]/-1sort
+
+`:g/\[/+1,/\]/-1sort`
 
 const arrayB = [
 "a",
@@ -345,3 +345,31 @@ const arrayA = [
 "f",
 "h",
 ]
+
+## Use Parentheses Without Capturing Their Contents
+
+Источник: урок 76 книги Дрю Нейла (книга советов про vim)
+
+Sometimes we may want to use parentheses for grouping, while we may have no interest in capturing the submatch. For example, take this pattern, which matches both forms of my name:
+
+`/\v(And|D)rew Neil`
+
+Here we’re using parentheses to match either “Andrew” or “Drew,” but we’re probably not interested in capturing the “And or D” fragment that is wrapped in parentheses.
+We can tell Vim not to bother assigning it to the \1 register by prepending a % in front
+of the parentheses, like this:
+
+`/\v%(And|D)rew Neil`
+
+What difference does this make? Well, it’s a smidge faster, not that you’re likely to notice. But it can be useful if you find yourself using several sets of parentheses.
+Suppose we wanted to replace all occurrences of FIRSTNAME LASTNAME with LASTNAME, FIRSTNAME for both forms of my name. We could do so like this:
+
+```
+ /\v(%(And|D)rew) (Neil)
+ :%s//\2, \1/g
+```
+
+The search pattern assigns either “Andrew” or “Drew” to capture register \1 and assigns
+“Neil” to register \2. If we hadn’t used %() for the second set of parentheses, then it
+would have captured a fragment of text unnecessarily, cluttering up our replacement
+field.
+**Можно сделать и без символа %, единствевнное, что пришлось бы вместо групп 2 и 1 использовать 3 и 1.**
