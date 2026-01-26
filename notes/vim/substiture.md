@@ -372,4 +372,23 @@ The search pattern assigns either “Andrew” or “Drew” to capture register
 “Neil” to register \2. If we hadn’t used %() for the second set of parentheses, then it
 would have captured a fragment of text unnecessarily, cluttering up our replacement
 field.
-**Можно сделать и без символа %, единствевнное, что пришлось бы вместо групп 2 и 1 использовать 3 и 1.**
+**Можно сделать и без символа %, единственное, что пришлось бы вместо групп 2 и 1 использовать 3 и 1.**
+
+## удаление символов \_
+
+пример до удаления
+
+> $ qemu-img create -o backing*file=\_img1.raw*,backing*fmt=raw -f qcow2 \_img1.cow*
+
+шаблон для замены
+
+`%s/\v[=[:punct:][:space:]]\zs(_)([[:alnum:][:punct:]]{-})(_)\ze[[:punct:][:space:]\n]/\2/g`
+
+шаблон с дополнительной фильтрацией - отбираем строки начинающиеся с **$ qem** и к полученным строкам применяем шаблон выше,
+в примере в конце строки указано **/gc**, что означает глобальная замена с подтверждением
+
+`g/\$ gemu/s/\v[=[:punct:][:space:]]\zs(_)([[:alnum:][:punct:]]{-})(_)\ze[[:punct:][:space:]\n]/\2/gc`
+
+после применения шаблона
+
+> $ qemu-img create -o backing_file=img1.raw,backing_fmt=raw -f qcow2 img1.cow
