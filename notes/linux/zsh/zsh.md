@@ -70,7 +70,7 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
-  docker,
+  docker
   # fzf должен быть в конце списка
   fzf
 )
