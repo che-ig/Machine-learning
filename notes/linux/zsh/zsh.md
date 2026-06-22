@@ -65,10 +65,13 @@ nano ~/.zshrc
 
 ```bash
 plugins=(
+  # fzf-tab должен быть в начале списка
+  fzf-tab
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
   docker,
+  # fzf должен быть в конце списка
   fzf
 )
 ```
