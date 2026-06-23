@@ -1,6 +1,11 @@
 **/.vscode
+/yazi/plugins/
+
 /pandas_study/.ipynb_checkpoints/
 /pandas_study/.jupyter/
 /probability/.ipynb_checkpoints/
 /notes/.obsidian/
+/notes/Excalidraw/
+
+!/notes/Excalidraw/Drawing*
 !/notes/.obsidian/snippets
