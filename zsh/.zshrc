@@ -128,6 +128,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# перебиндим комбинацию ctrl-u к привычному поведению как в bash
+bindkey '^U' backward-kill-line
+
 autoload -Uz compinit
 compinit
 source /home/che/.oh-my-zsh/custom/plugins/fzf-tab/fzf-tab.plugin.zsh
