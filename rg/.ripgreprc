@@ -1,3 +1,8 @@
+# --- Поведение поиска ---
+# Умный регистр (игнорирует, если запрос в нижнем регистре)
+--smart-case
+
+# --- Кастомные типы файлов ---
 # Add my 'web' type.
 --type-add
 web:*.{html,css,js,ts}*
@@ -5,3 +10,11 @@ web:*.{html,css,js,ts}*
 # Add my 'pyy' type.
 --type-add
 pyy:*.{py,ipynb}*
+
+# --- Глобальные исключения (мусор) ---
+# Исключаем папки, даже если их нет в .gitignore
+--glob=!node_modules
+--glob=!.venv
+--glob=!__pycache__
+--glob=!dist
+--glob=!build
