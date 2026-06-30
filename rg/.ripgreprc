@@ -1,0 +1,7 @@
+# Add my 'web' type.
+--type-add
+web:*.{html,css,js,ts}*
+
+# Add my 'pyy' type.
+--type-add
+pyy:*.{py,ipynb}*
