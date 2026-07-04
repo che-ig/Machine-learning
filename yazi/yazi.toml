@@ -10,6 +10,14 @@ xviewer = [
     { run = 'xviewer "$@"', orphan = true, for = "unix" },
 ]
 
+# Редакторы
+ksnip = [
+    { run = 'ksnip "$@"', orphan = true, for = "unix" },
+]
+inkscape = [
+    { run = 'inkscape "$@"', orphan = true, for = "unix" },
+]
+
 [preview]
 # Maximum preview width and height for images.
 max_width = 2560
