@@ -6,6 +6,9 @@ play = [
 	{ run = '/home/che/git/Machine-learning/celluloid_size.bash "$@"', orphan = true, for = "linux", desc = "play to celluloid" },
 	{ run = '/home/che/git/Machine-learning/vlc_size.bash "$@"', orphan = true, for = "linux", desc = "play to vlc" }
 ]
+xviewer = [
+    { run = 'xviewer "$@"', orphan = true, for = "unix" },
+]
 
 [preview]
 # Maximum preview width and height for images.
@@ -20,6 +23,8 @@ max_height = 1920
 # тогда при вызове интерактивоного режима (O) помимо проигрывателя будут доступны другие опции
 [open]
 prepend_rules = [
+# ПРАВИЛО ДЛЯ КАРТИНОК (ставим первым, чтобы оно имело приоритет)
+    { mime = "image/*", use = [ "xviewer" ] },
 	# Multiple openers for a single rule
 	{ name = "*.mp4", use = [ "play" ] },
 	{ name = "*.mkv", use = [ "play" ] },
