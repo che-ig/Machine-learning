@@ -18,10 +18,10 @@ VGA_MONITOR=$(xrandr -q | grep -Ei "VGA.* connected" | awk '{print $1}')
 if [[ -n ${VGA_MONITOR} ]]; then
     # порядок мониторов имеет значение (главный монитор дорлжен быть первым)
   bspc wm -O "$HDMI_MONITOR" "$VGA_MONITOR" 
-  bspc monitor "$HDMI_MONITOR" -d 1 2 3 [x]
+  bspc monitor "$HDMI_MONITOR" -d 1 2 3 4 5 [x]
   bspc monitor "$VGA_MONITOR" -d 1
 else
-  bspc monitor "$HDMI_MONITOR" -d 1 2 3 [x]
+  bspc monitor "$HDMI_MONITOR" -d 1 2 3 4 5 [x]
 fi
 
 bspc config border_width 4
