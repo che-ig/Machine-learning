@@ -1,0 +1,610 @@
+````markdown
+# Тренировочные файлы и задания для практики AWK
+
+## Как использовать этот материал
+
+1. Создайте папку для практики: `mkdir ~/awk-practice && cd ~/awk-practice`
+2. Создайте каждый файл из раздела "Файлы" (копируйте содержимое)
+3. Выполняйте задания из раздела "Задания"
+4. Сверяйте свои решения с подсказками
+
+---
+
+## Файлы для практики
+
+### 1. `employees.csv` — данные сотрудников (формат CSV)
+
+```csv
+id,name,department,salary,city,hire_date
+1,Иван Иванов,IT,120000,Москва,2020-03-15
+2,Пётр Петров,Sales,85000,СПб,2019-07-22
+3,Мария Сидорова,IT,135000,Москва,2018-11-01
+4,Алексей Смирнов,HR,75000,Казань,2021-05-10
+5,Ольга Кузнецова,IT,145000,Москва,2017-09-30
+6,Дмитрий Попов,Sales,92000,Новосибирск,2020-01-14
+7,Елена Волкова,HR,80000,СПб,2022-02-28
+8,Сергей Соколов,IT,128000,Казань,2019-04-05
+9,Анна Лебедева,Sales,88000,Москва,2021-08-17
+10,Николай Козлов,IT,155000,Москва,2016-12-01
+11,Татьяна Новикова,HR,72000,СПб,2023-01-15
+12,Андрей Морозов,Sales,95000,Казань,2018-06-20
+```
+
+---
+
+### 2. `access.log` — лог веб-сервера (формат Apache/Nginx)
+
+```log
+192.168.1.10 - - [12/Oct/2026:10:15:32 +0300] "GET /index.html HTTP/1.1" 200 2326
+192.168.1.15 - - [12/Oct/2026:10:15:33 +0300] "GET /style.css HTTP/1.1" 200 1234
+10.0.0.5 - - [12/Oct/2026:10:15:35 +0300] "POST /api/login HTTP/1.1" 401 512
+192.168.1.10 - - [12/Oct/2026:10:15:40 +0300] "GET /about.html HTTP/1.1" 200 3421
+172.16.0.22 - - [12/Oct/2026:10:15:42 +0300] "GET /admin HTTP/1.1" 403 128
+10.0.0.5 - - [12/Oct/2026:10:15:45 +0300] "POST /api/login HTTP/1.1" 200 1024
+192.168.1.10 - - [12/Oct/2026:10:15:50 +0300] "GET /products HTTP/1.1" 200 5678
+192.168.1.15 - - [12/Oct/2026:10:15:55 +0300] "GET /contact HTTP/1.1" 200 2100
+10.0.0.5 - - [12/Oct/2026:10:16:01 +0300] "GET /api/users HTTP/1.1" 200 890
+172.16.0.22 - - [12/Oct/2026:10:16:05 +0300] "GET /admin HTTP/1.1" 403 128
+192.168.1.10 - - [12/Oct/2026:10:16:10 +0300] "GET /index.html HTTP/1.1" 304 0
+192.168.1.20 - - [12/Oct/2026:10:16:15 +0300] "GET /nonexistent HTTP/1.1" 404 256
+10.0.0.5 - - [12/Oct/2026:10:16:20 +0300] "DELETE /api/users/5 HTTP/1.1" 500 512
+192.168.1.15 - - [12/Oct/2026:10:16:25 +0300] "GET /style.css HTTP/1.1" 200 1234
+172.16.0.22 - - [12/Oct/2026:10:16:30 +0300] "GET /admin HTTP/1.1" 403 128
+192.168.1.10 - - [12/Oct/2026:10:16:35 +0300] "GET /products/1 HTTP/1.1" 200 4321
+```
+
+---
+
+### 3. `sales.txt` — данные о продажах (разделитель — табуляция)
+
+```txt
+2026-01-15	Ноутбук	3	75000
+2026-01-15	Мышь	10	800
+2026-01-16	Ноутбук	2	75000
+2026-01-16	Клавиатура	5	2500
+2026-01-17	Монитор	4	25000
+2026-01-17	Мышь	8	800
+2026-01-18	Ноутбук	1	75000
+2026-01-18	Клавиатура	3	2500
+2026-01-19	Монитор	2	25000
+2026-01-19	Ноутбук	5	75000
+2026-01-20	Мышь	15	800
+2026-01-20	Клавиатура	7	2500
+```
+
+---
+
+### 4. `users.txt` — список пользователей (простой текстовый)
+
+```txt
+admin:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+user1:x:1001:1001:Ivan Ivanov:/home/user1:/bin/bash
+user2:x:1002:1002:Petr Petrov:/home/user2:/bin/zsh
+user3:x:1003:1003:Maria Sid:/home/user3:/bin/bash
+user4:x:1004:1004:Alex Smirnov:/home/user4:/bin/fish
+user5:x:1005:1005:Olga Kuzn:/home/user5:/bin/bash
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+user6:x:1006:1006:Dmitry Pop:/home/user6:/bin/bash
+user7:x:1007:1007:Elena Volk:/home/user7:/bin/zsh
+```
+
+---
+
+### 5. `config.ini` — конфигурационный файл (с абзацами)
+
+```ini
+[server1]
+host=192.168.1.10
+port=8080
+enabled=true
+region=moscow
+
+[server2]
+host=192.168.1.11
+port=9090
+enabled=false
+region=spb
+
+[server3]
+host=192.168.1.12
+port=8080
+enabled=true
+region=kazan
+
+[server4]
+host=192.168.1.13
+port=7070
+enabled=true
+region=moscow
+
+[server5]
+host=192.168.1.14
+port=8080
+enabled=false
+region=novosibirsk
+```
+
+---
+
+### 6. `numbers.txt` — просто числа (для статистики)
+
+```txt
+45
+12
+78
+23
+56
+89
+34
+67
+90
+11
+43
+76
+29
+58
+81
+36
+69
+92
+14
+47
+```
+
+---
+
+### 7. `duplicates.txt` — файл с повторами (для тренировки a[$0]++)
+
+```txt
+apple
+banana
+apple
+cherry
+banana
+date
+apple
+elderberry
+cherry
+fig
+banana
+grape
+apple
+date
+cherry
+```
+
+---
+
+### 8. `mixed.txt` — файл с "грязными" данными
+
+```txt
+ID: Name: Age: City
+1: Иван: 25: Москва
+2: Пётр: 30: СПб
+3: Мария:
+4: Алексей: 28: Казань
+5: Ольга: 22:
+6: Дмитрий: 35: Новосибирск
+7: Елена: 27: СПб
+8: Сергей: 31: Казань
+9: Анна: 24: Москва
+10: Николай: 40:
+```
+
+---
+
+## Задания для практики
+
+### Уровень 1: Базовые операции
+
+**Задание 1.1** — Выведите имена всех сотрудников из `employees.csv` (2-е поле).
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 {print $2}' employees.csv
+```
+</details>
+
+---
+
+**Задание 1.2** — Выведите IP-адреса из `access.log` (первое поле).
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '{print $1}' access.log
+```
+</details>
+
+---
+
+**Задание 1.3** — Выведите только строки из `users.txt`, где shell — `/bin/bash`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F: '$7 == "/bin/bash"' users.txt
+```
+</details>
+
+---
+
+**Задание 1.4** — Посчитайте количество строк в `numbers.txt`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk 'END {print NR}' numbers.txt
+```
+</details>
+
+---
+
+**Задание 1.5** — Выведите все пустые строки из `mixed.txt` с их номерами.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk 'NF==0 {print NR": [пустая строка]"}' mixed.txt
+```
+</details>
+
+---
+
+### Уровень 2: Фильтрация и условия
+
+**Задание 2.1** — Выведите сотрудников из `employees.csv` с зарплатой больше 100000.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 && $4 > 100000 {print $2, $4}' employees.csv
+```
+</details>
+
+---
+
+**Задание 2.2** — Выведите из `access.log` все запросы со статусом 403 или 404.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '$9 == 403 || $9 == 404' access.log
+```
+</details>
+
+---
+
+**Задание 2.3** — Выведите пользователей из `users.txt`, у которых UID >= 1000 (обычные пользователи).
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F: '$3 >= 1000' users.txt
+```
+</details>
+
+---
+
+**Задание 2.4** — Выведите из `employees.csv` сотрудников из IT-отдела, которые работают в Москве.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, '$3 == "IT" && $5 == "Москва" {print $2, $4}' employees.csv
+```
+</details>
+
+---
+
+**Задание 2.5** — Выведите из `access.log` строки с диапазона по шаблону: от первого `403` до первого `200` после него.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '/" 403 /,/" 200 /' access.log
+```
+</details>
+
+---
+
+### Уровень 3: Математика и статистика
+
+**Задание 3.1** — Посчитайте общую сумму зарплат в `employees.csv`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 {sum += $4} END {print "Общий ФОТ:", sum}' employees.csv
+```
+</details>
+
+---
+
+**Задание 3.2** — Найдите минимальную и максимальную зарплату в `employees.csv`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR==2 {min=$4; max=$4} 
+         NR>2 {if($4<min) min=$4; if($4>max) max=$4} 
+         END {print "Min:", min, "Max:", max}' employees.csv
+```
+</details>
+
+---
+
+**Задание 3.3** — Посчитайте сумму продаж по каждому товару из `sales.txt` (количество × цена).
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '{sum[$2] += $3 * $4} END {for (item in sum) print item, sum[item]}' sales.txt
+```
+</details>
+
+---
+
+**Задание 3.4** — Найдите среднее, минимальное и максимальное значение в `numbers.txt`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk 'NR==1 {min=$1; max=$1} 
+     {sum+=$1; if($1<min) min=$1; if($1>max) max=$1} 
+     END {print "Avg:", sum/NR, "Min:", min, "Max:", max}' numbers.txt
+```
+</details>
+
+---
+
+**Задание 3.5** — Посчитайте общую выручку по датам из `sales.txt`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '{sum[$1] += $3 * $4} END {for (d in sum) print d, sum[d]}' sales.txt | sort
+```
+</details>
+
+---
+
+### Уровень 4: Ассоциативные массивы и группировка
+
+**Задание 4.1** — Подсчитайте количество сотрудников в каждом отделе из `employees.csv`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 {count[$3]++} END {for (d in count) print d, count[d]}' employees.csv
+```
+</details>
+
+---
+
+**Задание 4.2** — Подсчитайте количество запросов с каждого IP из `access.log` и отсортируйте по убыванию.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '{count[$1]++} END {for (ip in count) print count[ip], ip}' access.log | sort -rn
+```
+</details>
+
+---
+
+**Задание 4.3** — Подсчитайте количество запросов по каждому HTTP-статусу из `access.log`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '{status[$9]++} END {for (s in status) print s, status[s]}' access.log
+```
+</details>
+
+---
+
+**Задание 4.4** — Выведите только дубликаты строк из `duplicates.txt`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk 'a[$0]++' duplicates.txt
+```
+</details>
+
+---
+
+**Задание 4.5** — Выведите только уникальные строки из `duplicates.txt` (первые вхождения).
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '!a[$0]++' duplicates.txt
+```
+</details>
+
+---
+
+**Задание 4.6** — Подсчитайте среднюю зарплату по каждому отделу из `employees.csv`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 {sum[$3]+=$4; count[$3]++} 
+         END {for (d in sum) print d, sum[d]/count[d]}' employees.csv
+```
+</details>
+
+---
+
+### Уровень 5: Продвинутые задачи
+
+**Задание 5.1** — Выведите из `config.ini` все секции, где `enabled=true`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -v RS='' '/enabled=true/' config.ini
+```
+</details>
+
+---
+
+**Задание 5.2** — Из `config.ini` извлеките host и port только для серверов из региона `moscow`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -v RS='' '/region=moscow/ {
+    for (i=1; i<=NF; i++) {
+        if ($i ~ /^host=/) host=$i
+        if ($i ~ /^port=/) port=$i
+    }
+    print host, port
+}' config.ini
+```
+</details>
+
+---
+
+**Задание 5.3** — Объедините данные: для каждого сотрудника из `employees.csv` выведите его имя и город, отформатированные в колонки.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 {printf "%-20s | %-15s | %8d\n", $2, $5, $4}' employees.csv
+```
+</details>
+
+---
+
+**Задание 5.4** — Найдите в `access.log` IP-адреса, которые получили ошибку 403 более одного раза.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk '$9 == 403 {count[$1]++} END {for (ip in count) if (count[ip] > 1) print ip, count[ip]}' access.log
+```
+</details>
+
+---
+
+**Задание 5.5** — Из `mixed.txt` выведите только строки, где заполнены все 4 поля (ID, Name, Age, City).
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F: 'NF == 4 && NR > 1' mixed.txt
+```
+</details>
+
+---
+
+**Задание 5.6** — Посчитайте, сколько сотрудников было нанято в каждом году из `employees.csv`.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 {split($6, d, "-"); year[d[1]]++} END {for (y in year) print y, year[y]}' employees.csv | sort
+```
+</details>
+
+---
+
+**Задание 5.7** — Объедините `employees.csv` и `sales.txt`: найдите, сколько продаж пришлось на Москву (по городу из `employees.csv` — но это сложно, упростим: просто выведите общую сумму продаж и общую сумму зарплат в одном выводе).
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 {salary_sum += $4} END {print "ФОТ:", salary_sum}' employees.csv
+awk '{sales_sum += $3 * $4} END {print "Продажи:", sales_sum}' sales.txt
+```
+</details>
+
+---
+
+**Задание 5.8** — Создайте отчёт: для каждого отдела из `employees.csv` выведите количество сотрудников, общую и среднюю зарплату, отформатированные в таблицу.
+
+<details>
+<summary>Подсказка</summary>
+
+```bash
+awk -F, 'NR>1 {
+    count[$3]++
+    sum[$3] += $4
+}
+END {
+    printf "%-12s | %10s | %12s | %12s\n", "Department", "Count", "Total", "Average"
+    printf "%-12s-+-%10s-+-%12s-+-%12s\n", "------------", "----------", "------------", "------------"
+    for (d in count) {
+        printf "%-12s | %10d | %12d | %12.2f\n", d, count[d], sum[d], sum[d]/count[d]
+    }
+}' employees.csv
+```
+</details>
+
+---
+
+## Чек-лист для самопроверки
+
+После выполнения заданий убедитесь, что вы умеете:
+
+- [ ] Использовать `-F` и `FS` для разных разделителей
+- [ ] Использовать `OFS` для изменения выходного разделителя
+- [ ] Работать с `NR`, `NF`, `FNR`, `FILENAME`
+- [ ] Использовать `BEGIN` и `END` блоки
+- [ ] Фильтровать строки по условиям и регулярным выражениям
+- [ ] Использовать диапазонные шаблоны (`/start/,/end/`)
+- [ ] Считать суммы, средние, минимумы, максимумы
+- [ ] Использовать ассоциативные массивы для группировки
+- [ ] Использовать `a[$0]++` и `!a[$0]++` для дубликатов/уникальных
+- [ ] Использовать `printf` для форматированного вывода
+- [ ] Работать с режимом абзацев (`RS=''`)
+- [ ] Использовать функции `split`, `substr`, `gsub`
+- [ ] Передавать переменные через `-v`
+
+---
+
+## Дополнительные идеи для практики
+
+1. **Возьмите реальный системный файл** (`/etc/passwd`, `/var/log/syslog`) и попробуйте извлечь из него полезные данные.
+2. **Проанализируйте свои логи** — если у вас есть доступ к `access.log` веб-сервера, попробуйте найти топ-10 URL, топ-10 IP, распределение по статусам.
+3. **Создайте свой файл** с данными, которые вам интересны (например, список ваших фильмов, книг, расходов), и потренируйтесь на нём.
+4. **Сравнивайте с другими утилитами** — решите одну и ту же задачу через `awk`, `cut`, `grep`, `sort`, `uniq` и сравните, какой способ короче/быстрее.
+
+Удачи в практике!
+````
